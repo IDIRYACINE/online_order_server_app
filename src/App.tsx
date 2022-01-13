@@ -1,15 +1,14 @@
 import React from 'react';
-import './style/App.css';
+import './ui/style/App.css';
+import OrdersList from './ui/orders/OrdersList';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Hello
-        </p>
-        
+      <OrdersList/>
       </header>
+      
     </div>
   );
 }
