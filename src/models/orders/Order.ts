@@ -44,11 +44,11 @@ export default class Order{
         return this.#customerName
     }
 
-    get orderId(){
+    get id(){
         return this.#id
     }
 
-    get orderState(){
+    get state(){
         return this.#state
     }
 

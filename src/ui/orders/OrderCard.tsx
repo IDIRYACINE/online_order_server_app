@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import Order from '../../models/orders/Order'
+import '../style/OrderCard.css'
 
 
 export default function OrderCard(props : any){
@@ -7,7 +8,7 @@ export default function OrderCard(props : any){
 
     return (
         <div className ='OrderCard'>
-            <p>orderId : {order.orderId}</p>
+            <p>orderId : {order.id}</p>
             <p>customerName : {order.customerName}</p>
         </div>
     )
