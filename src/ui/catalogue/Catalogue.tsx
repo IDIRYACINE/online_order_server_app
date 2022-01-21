@@ -1,12 +1,12 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import CategoryCard from './category/CategoryCard'
-import {Category} from '../../models/catalogue/Types'
 import '../style/CategoryCard.css'
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
 
 
 export default function Catalogue(){
-    const [categories , setCategories] = useState([{name:"pizza",productCount:0,imageUrl:'https://thumbs.dreamstime.com/z/pizz-86225620.jpg',index:0}])
+    const categories = useAppSelector(state => state.category.categories)
 
     return (
         <div className='Catalogue'>
@@ -14,8 +14,8 @@ export default function Catalogue(){
                 <Link to="/Orders">Home</Link>
             </nav>
 
-            {categories.map(element =>{ 
-                return <CategoryCard data={element}></CategoryCard>
+            {categories.map((element,index) =>{ 
+                return <CategoryCard data={element} index={index}></CategoryCard>
                 })
             }
 

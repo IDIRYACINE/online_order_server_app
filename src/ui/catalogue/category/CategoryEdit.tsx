@@ -1,14 +1,18 @@
-import React,{useState} from 'react'
-import { Category } from '../../../models/catalogue/Types'
+import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
 
-export default function CategoryEdit(props:Category){
+export default function CategoryEdit(){
     
-    const[category , setCategory] = useState(props)
+    const category  = useAppSelector(state => state.category.categories[0])
 
     let tempCategory : any
 
     let SaveChanges = ()=> {
-        
+        Object.entries(tempCategory).forEach(
+            ([key, value]) => {
+
+            }
+        );
     }
 
     let GoBack = ()=>{
@@ -21,7 +25,6 @@ export default function CategoryEdit(props:Category){
 
     let ReloadCategoryImage = (name:string,value:any)=>{
         CacheChange(name , value)
-        setCategory({name : category.name , productCount: category.productCount , imageUrl:value , index:category.index})
     }
 
     return (

@@ -1,8 +1,8 @@
-import React,{useState} from 'react'
-import {Category} from '../../../models/catalogue/Types'
+import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
 
 export default function CategoryCard(props : any) {
-    const[category , setCategory] = useState(props.data)
+    const category = useAppSelector((state) => state.category.categories[0])
 
     return (
     <div className='Category'>

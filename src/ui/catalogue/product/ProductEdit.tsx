@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
-import { Product } from '../../../models/catalogue/Types'
+import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
 
 function Accesory(){
     return (
         <div>
             <input className='Size'></input>
             <input className='Price'></input>
-            <button className='RemoveAccessory' onClick={}>Remove</button>
+            <button className='RemoveAccessory' onClick={()=>{}}>Remove</button>
         </div>
     )
 
 }
 
-export default function ProductEdit(props : Product){
-    const [sizes,updateSizes] = useState(props.selectedSizeIndex)
-    
+export default function ProductEdit(){
+    const product = useAppSelector(state => state.product.products[0])
+    const dispatch = useAppDispatch()
+
     let AddSize = ()=>{
 
     }
@@ -22,12 +23,12 @@ export default function ProductEdit(props : Product){
 
     return (
         <div className='ProductEdit'>
-            <img className='ProductImage' src={props.imageUrl}></img>
+            <img className='ProductImage' src={product.imageUrl}></img>
 
             <label className='ProductNameLabel'>Name </label>
-            <input className='ProductNameField' value={props.name}></input>
+            <input className='ProductNameField' value={product.name}></input>
 
-            <label className='ProductDescription'>{props.description}</label>
+            <label className='ProductDescription'>{product.description}</label>
 
             <div className='Accesory'>
                 <div className='AccesoryLabels'>

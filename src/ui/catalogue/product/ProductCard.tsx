@@ -1,27 +1,33 @@
-import React,{useState} from 'react'
-import { Product } from '../../../models/catalogue/Types'
+import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
+import { update } from '../../../redux/reducers/ProductsReducer'
 
-export default function ProductCard(props : Product){
-    const [selectedSizeIndex,updatePrice] = useState(props.selectedSizeIndex)
-    
+export default function ProductCard(){
+    const product = useAppSelector(state => state.product.products[0])
+    const dispatch = useAppDispatch()
+
+    let updatePrice = (index :number)=>{
+        dispatch(update)
+    }
+
     return (
         <div className='ProductCard'>
             <label className='ProductNameLabel'>Name </label>
-            <input className='ProductNameField' value={props.name}></input>
+            <input className='ProductNameField' value={product.name}></input>
 
             <label className='ProductPricesLabel'>Price </label>
-            <label className='ProductPrice'>{selectedSizeIndex}</label>
+            <label className='ProductPrice'>{product.selectedSizeIndex}</label>
 
             <label className='ProductSizeLabel'>Size</label>
             <select className='ProductSize'>
-                {props.prices.map((element,index) =>{
+                {product.prices.map((element,index) =>{
                     return <option value={element} onChange={e=>{updatePrice(index)}}></option>
                 })}
             </select>
             
-            <label className='ProductDescription'>{props.description}</label>
+            <label className='ProductDescription'>{product.description}</label>
 
-            <img className='ProductImage' src={props.imageUrl}></img>
+            <img className='ProductImage' src={product.imageUrl}></img>
         </div>
     )
 }
