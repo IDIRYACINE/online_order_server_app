@@ -1,20 +1,20 @@
-import React,{useState} from "react";
-import Order from "../../models/orders/Order";
+import React from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/Hooks";
 import OrderCard from './OrderCard'
+
+import {add, remove} from '../../redux/reducers/OrdersReducer'
 
 
 export default function OrdersList() {
-    const [orders , setOrders] = useState([new Order({id:"idir",customerName:"yacine"})])
-    
+    const orders = useAppSelector(state => state.order.orders)
+    const dispatch = useAppDispatch()
+
     function addOrder(data : any){
-        let result = orders.concat(new Order(data))
-        setOrders(result)
+       dispatch(add({order : data}))
     }
 
     function deleteOrder(index : number){
-        let result = orders.slice()
-        result.splice(index,1)
-        setOrders(result)
+       dispatch(remove({index:index}))
     }
 
     return (
@@ -25,8 +25,8 @@ export default function OrdersList() {
 
             <button onClick={()=>{deleteOrder(0)}}>Remove</button>
 
-            {orders.map(element =>{ 
-                return <OrderCard data={element}></OrderCard>
+            {orders.map((element,index) =>{ 
+                return <OrderCard index={index} ></OrderCard>
             })}
 
         </div>    
