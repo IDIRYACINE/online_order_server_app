@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CategoryCard from './category/CategoryCard'
-import '../style/CategoryCard.css'
 import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
 
 

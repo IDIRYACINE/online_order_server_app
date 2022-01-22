@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import Order from '../../models/orders/Order'
-import '../style/OrderCard.css'
 
 
 export default function OrderCard(props : any){
