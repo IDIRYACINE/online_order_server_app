@@ -1,6 +1,6 @@
 
 export enum OrderStatus {
-
+    Pending
 }
 
 export type Coordinates ={

@@ -3,30 +3,45 @@ import { useAppDispatch, useAppSelector } from "../../redux/Hooks";
 import OrderCard from './OrderCard'
 
 import {add, remove} from '../../redux/reducers/OrdersReducer'
+import { OrderStatus } from "../../models/orders/Order";
 
+let dummyIndex = -1
 
 export default function OrdersList() {
-    const orders = useAppSelector(state => state.order.orders)
+    const orders  = useAppSelector(state => state.order.orders)
     const dispatch = useAppDispatch()
+    
+    function addOrder(){
+        dummyIndex++
+        let dummyOrder = {
+            id : dummyIndex.toString(),
+            state : OrderStatus.Pending,
+            items : [],
+            customerName : 'idir',
+            address : 'bba',
+            coordinations : {
+                latitude:2,
+                longitude:3
+            }
+        }
 
-    function addOrder(data : any){
-       dispatch(add({order : data}))
+       dispatch(add(dummyOrder))
     }
 
-    function deleteOrder(index : number){
-       dispatch(remove({index:index}))
+    function deleteOrder(key : number){
+       dispatch(remove(key))
     }
 
     return (
         <div className="OrdersList">
             <p>OrdersList</p>
 
-            <button onClick={() =>{addOrder({id:"idir",customerName:"yacine"})}} >Add</button>
+            <button onClick={() =>{addOrder()}} >Add</button>
 
             <button onClick={()=>{deleteOrder(0)}}>Remove</button>
 
-            {orders.map((element,index) =>{ 
-                return <OrderCard index={index} ></OrderCard>
+            {orders.map((element ,key) =>{ 
+                return <OrderCard key={element.id} index={key} ></OrderCard>
             })}
 
         </div>    
