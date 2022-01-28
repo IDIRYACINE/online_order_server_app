@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { setSelectedProductIndex } from '../../../models/state'
 import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
-import { update } from '../../../redux/reducers/ProductsReducer'
+import { remove, update } from '../../../redux/reducers/ProductsReducer'
 
-export default function ProductCard(){
-    const product = useAppSelector(state => state.product.products[0])
+let selectedSizeIndex = 0
+
+export default function ProductCard(props:any){
+    const product = useAppSelector(state => state.product.products[props.index])
     const dispatch = useAppDispatch()
+    const navigate =useNavigate()
 
-    let updatePrice = (index :number)=>{
-        dispatch(update)
+    const [price,setPrice] = useState(0)
+    const [size,setSize] = useState(0)
+
+    function handleProductEdit(){
+        setSelectedProductIndex(props.index)
+        navigate("/ProductEdit",{replace:true})
+    }
+
+    function handleProductDelete(){
+        dispatch(remove({product:product}))
     }
 
     return (
@@ -16,18 +29,21 @@ export default function ProductCard(){
             <input className='ProductNameField' value={product.name}></input>
 
             <label className='ProductPricesLabel'>Price </label>
-            <label className='ProductPrice'>{product.selectedSizeIndex}</label>
+            <label className='ProductPrice'>{product.prices[size]}</label>
 
             <label className='ProductSizeLabel'>Size</label>
             <select className='ProductSize'>
                 {product.prices.map((element,index) =>{
-                    return <option value={element} onChange={e=>{updatePrice(index)}}></option>
+                    return <option value={element} onChange={e=>{setPrice(index)}}></option>
                 })}
             </select>
             
             <label className='ProductDescription'>{product.description}</label>
 
             <img className='ProductImage' src={product.imageUrl}></img>
+
+            <button className='EditButton' onClick={()=>{handleProductEdit()}}>Edit</button>
+            <button className='DeleteButton' onClick={()=>{handleProductDelete()}}>Delete</button>
         </div>
     )
 }

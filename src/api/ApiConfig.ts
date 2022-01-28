@@ -1,3 +1,4 @@
+import { Category, Product } from "../models/catalogue/Types"
 
 
 export const Host = 'http://localhost:3001'
@@ -13,3 +14,34 @@ export const DeleteProductApi:string = Host+'/DeleteProduct'
 export const CreateProductApi:string = Host+'/CreateProduct'
 
 export enum FetchModes{Single,Multi}
+
+export type FetchOptions = {
+    startIndex : string,
+    count : string,
+    categoryId?:string
+}
+
+export type DeleteOptions = {
+    categoryId : string,
+    productId? : string
+}
+
+export type Attribute = {
+    name :string,
+    value : any
+}
+
+export type UpdateOptions = {
+    categoryId : string,
+    productId? : string,
+    updatedValues : Attribute[]
+}
+
+export type CreateProductOptions = {
+    product:Product,
+    categoryId:string
+}
+
+export type CreateCategoryOptions = {
+    category :Category
+}

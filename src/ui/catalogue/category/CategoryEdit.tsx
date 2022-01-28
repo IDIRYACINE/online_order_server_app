@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { selectedCategoryIndex } from '../../../models/state'
 import {useAppDispatch,useAppSelector} from '../../../redux/Hooks'
-import {editedCategoryIndex, update } from '../../../redux/reducers/CategoryReducer'
+import { update } from '../../../redux/reducers/CategoryReducer'
 import './CategoryEdit.css'
 
 const changedValues : any = {}
 
 export default function CategoryEdit(){
-    const category  = useAppSelector(state => state.category.categories[editedCategoryIndex])
+    const category  = useAppSelector(state => state.category.categories[selectedCategoryIndex])
     const navigate = useNavigate()
 
     const[name , setName] = useState(category.name)

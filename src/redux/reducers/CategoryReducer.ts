@@ -14,9 +14,6 @@ const initialState : CategoriesState = {
     categories : []
 }
 
-export let editedCategoryIndex = 0
-export function setSelectedCategoryIndex(index:number){editedCategoryIndex = index}
-
 const categorySlice = createSlice({
     name : 'categories',
     initialState,
