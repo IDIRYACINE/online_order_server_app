@@ -26,21 +26,21 @@ export default function ProductCard(props:any){
     return (
         <div className='ProductCard'>
             <label className='ProductNameLabel'>Name </label>
-            <input className='ProductNameField' value={product.name}></input>
+            <input className='ProductNameField' value={product.Name}></input>
 
             <label className='ProductPricesLabel'>Price </label>
-            <label className='ProductPrice'>{product.prices[size]}</label>
+            <label className='ProductPrice'>{product.Prices[size]}</label>
 
             <label className='ProductSizeLabel'>Size</label>
             <select className='ProductSize'>
-                {product.prices.map((element,index) =>{
+                {product.Prices.map((element,index) =>{
                     return <option value={element} onChange={e=>{setPrice(index)}}></option>
                 })}
             </select>
             
-            <label className='ProductDescription'>{product.description}</label>
+            <label className='ProductDescription'>{product.Description}</label>
 
-            <img className='ProductImage' src={product.imageUrl}></img>
+            <img className='ProductImage' src={product.ImageUrl}></img>
 
             <button className='EditButton' onClick={()=>{handleProductEdit()}}>Edit</button>
             <button className='DeleteButton' onClick={()=>{handleProductDelete()}}>Delete</button>

@@ -23,12 +23,12 @@ export default function ProductEdit(){
 
     return (
         <div className='ProductEdit'>
-            <img className='ProductImage' src={product.imageUrl}></img>
+            <img className='ProductImage' src={product.ImageUrl}></img>
 
             <label className='ProductNameLabel'>Name </label>
-            <input className='ProductNameField' value={product.name}></input>
+            <input className='ProductNameField' value={product.Name}></input>
 
-            <label className='ProductDescription'>{product.description}</label>
+            <label className='ProductDescription'>{product.Description}</label>
 
             <div className='Accesory'>
                 <div className='AccesoryLabels'>

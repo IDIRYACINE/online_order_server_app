@@ -16,16 +16,16 @@ const productsSlice = createSlice({
         update(state,action:ModifiedAction){
             const products = state[selectedCategoryIndex]
             const newValues = action.payload.updatedValues
-            const index = action.payload.oldProduct.index
+            const index = action.payload.oldProduct.Index
             let product = products[index]
             products[index] = {...product,...newValues}
         },
         remove(state,action:CreationAction){
-            state[selectedCategoryIndex].splice(action.payload.product.index)
+            state[selectedCategoryIndex].splice(action.payload.product.Index)
         },
         create(state,action:CreationAction){
             const products = state[selectedCategoryIndex]
-            action.payload.product.index = products.length
+            action.payload.product.Index = products.length
             products.push(action.payload.product)
         },
 

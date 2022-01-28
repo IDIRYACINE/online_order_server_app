@@ -1,24 +1,36 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Attribute } from '../../../api/ApiConfig'
+import { updateCategory } from '../../../api/CategoryApi'
+import { CategoryAttrIndexes } from '../../../models/catalogue/Types'
 import { selectedCategoryIndex } from '../../../models/state'
 import {useAppDispatch,useAppSelector} from '../../../redux/Hooks'
 import { update } from '../../../redux/reducers/CategoryReducer'
 import './CategoryEdit.css'
 
-const changedValues : any = {}
+const changedValues : Array<Attribute> = []
+const cachedValues :any = {}
 
 export default function CategoryEdit(){
     const category  = useAppSelector(state => state.category.categories[selectedCategoryIndex])
     const navigate = useNavigate()
 
-    const[name , setName] = useState(category.name)
-    const[imageUrl , setImageUrl] = useState(category.imageUrl)
+    const[name , setName] = useState(category.Name)
+    const[imageUrl , setImageUrl] = useState(category.ImageUrl)
 
     const dispatch = useAppDispatch()
     
     function saveChanges (){
-       dispatch(update({oldCategory:category,updatedValues:changedValues}))
-       navigate("/Catalogue",{replace:true})
+        updateCategory({
+            categoryId : category.Id,
+            updatedValues : changedValues
+        },{
+            onSuccess : ()=>{
+                dispatch(update({oldCategory:category,updatedValues:cachedValues}))
+                navigate("/Catalogue",{replace:true})
+            },
+            onFail:()=>{console.log("failed")}
+        })
     }
 
     function cancel (){
@@ -26,17 +38,18 @@ export default function CategoryEdit(){
     }
 
     function handleNameChange(value:string){
-        cacheValueChange("name",value)
+        cacheValueChange(CategoryAttrIndexes.Name,"Name",value)
         setName(value)
     }
 
     function handleImageChange(value:string){
-        cacheValueChange("imageUrl",value)
+        cacheValueChange(CategoryAttrIndexes.ImageUrl,"ImageUrl",value)
         setImageUrl(value)
     }
 
-    function cacheValueChange (name:string ,value:any){
-        changedValues[name] = value
+    function cacheValueChange (index:number,name:string ,value:any){
+        changedValues[index] = {name:name,value:value}
+        cachedValues[name] = value
     }
 
     return (

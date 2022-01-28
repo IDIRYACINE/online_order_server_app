@@ -14,15 +14,19 @@ export default function CategoryCreator(){
 
     let handleCategoryCreation = ()=> {
         let category : Category = {
-            id:name,
-            name:name,
-            imageUrl:imageUrl,
-            index:-1,
-            productCount:0
+            Id:name,
+            Name:name,
+            ImageUrl:imageUrl,
+            Index:-1,
+            ProductCount:0
         }
-        createCategory(category,{
-            onSuccessCallback:()=>{navigate("/Catalogue",{replace:true})},
-            onFailCallback : ()=>{}
+        createCategory(
+            {
+                category : category
+            },
+            {
+            onSuccess:()=>{navigate("/Catalogue",{replace:true})},
+            onFail: ()=>{}
         })
         
     }
