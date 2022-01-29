@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { setSelectedProductIndex } from '../../../models/state'
-import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
-import { remove, update } from '../../../redux/reducers/ProductsReducer'
+import { setSelectedProductIndex } from '../../models/state'
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
+import { removeProduct, updateProduct } from '../../redux/reducers/ProductsReducer'
 
 let selectedSizeIndex = 0
 
@@ -20,7 +20,7 @@ export default function ProductCard(props:any){
     }
 
     function handleProductDelete(){
-        dispatch(remove({product:product}))
+        dispatch(removeProduct({product:product}))
     }
 
     return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
 
 function Accesory(){
     return (

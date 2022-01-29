@@ -1,9 +1,10 @@
 import React from 'react'
 import {useNavigate } from 'react-router-dom'
-import CategoryCard from './category/CategoryCard'
+import CategoryCard from '../category/CategoryCard'
 import {useAppDispatch, useAppSelector } from '../../redux/Hooks'
 import { fetchCategory } from '../../api/CategoryApi'
-import { load } from '../../redux/reducers/CategoryReducer'
+import { loadCategory } from '../../redux/reducers/CategoryReducer'
+import { registerCategory } from '../../redux/reducers/ProductsReducer'
 
 
 export default function Catalogue(){
@@ -19,7 +20,8 @@ export default function Catalogue(){
         fetchCategory({startIndex:"0",count:"2"},
         {
             onSuccess:(response)=>{
-                dispatch(load({categories:response.data}))
+                dispatch(loadCategory({categories:response.data}))
+                dispatch(registerCategory({categories:response.data}))
             },
             onFail :(error)=>{console.log("failed")}
         })

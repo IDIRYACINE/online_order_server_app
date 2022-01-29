@@ -45,3 +45,8 @@ export type CreateProductOptions = {
 export type CreateCategoryOptions = {
     category :Category
 }
+
+export type Callbacks = {
+    onSuccess(response?:any):void,
+    onFail(error?:any):void,
+}

@@ -19,19 +19,19 @@ const categorySlice = createSlice({
     name : 'categories',
     initialState,
     reducers : {
-        create(state,action:ModifyAction){
+        createCategory(state,action:ModifyAction){
             action.payload.category.Index = state.categories.length 
             state.categories.push(action.payload.category)
         },
-        remove(state,action:ModifyAction){
+        removeCategory(state,action:ModifyAction){
             state.categories.splice(action.payload.category.Index)
         },
-        update(state,action:UpdateAction){
+        updateCategory(state,action:UpdateAction){
             const newValues = action.payload.updatedValues
             const index = action.payload.oldCategory.Index
             state.categories[index] = {...state.categories[index],...newValues}
         },
-        load(state,action:LoadAction){
+        loadCategory(state,action:LoadAction){
             let length = state.categories.length
             action.payload.categories.forEach(value=>{
                 value.Index = length
@@ -43,7 +43,7 @@ const categorySlice = createSlice({
     }
 } )
 
-export const {create,update,remove,load} = categorySlice.actions
+export const {createCategory,updateCategory,removeCategory,loadCategory} = categorySlice.actions
 
 export default categorySlice.reducer
 

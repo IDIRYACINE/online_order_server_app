@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Attribute } from '../../../api/ApiConfig'
-import { updateCategory } from '../../../api/CategoryApi'
-import { CategoryAttrIndexes } from '../../../models/catalogue/Types'
-import { selectedCategoryIndex } from '../../../models/state'
-import {useAppDispatch,useAppSelector} from '../../../redux/Hooks'
-import { update } from '../../../redux/reducers/CategoryReducer'
-import './CategoryEdit.css'
+import { Attribute } from '../../api/ApiConfig'
+import { updateCategory } from '../../api/CategoryApi'
+import { CategoryAttrIndexes } from '../../models/catalogue/Types'
+import { selectedCategoryIndex } from '../../models/state'
+import {useAppDispatch,useAppSelector} from '../../redux/Hooks'
+import { updateCategory as update } from '../../redux/reducers/CategoryReducer'
+import '../../styles/Category/CategoryEdit.css'
 
 const changedValues : Array<Attribute> = []
 const cachedValues :any = {}

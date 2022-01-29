@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { deleteCategory } from '../../../api/CategoryApi'
-import { setSelectedCategoryIndex } from '../../../models/state'
-import { useAppDispatch, useAppSelector } from '../../../redux/Hooks'
-import { remove, } from '../../../redux/reducers/CategoryReducer'
+import { deleteCategory } from '../../api/CategoryApi'
+import { setSelectedCategoryIndex } from '../../models/state'
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
+import { removeCategory, } from '../../redux/reducers/CategoryReducer'
 
 export default function CategoryCard(props : any) {
     const category = useAppSelector((state) => state.category.categories[props.index])
@@ -11,7 +11,7 @@ export default function CategoryCard(props : any) {
     const dispatch = useAppDispatch()
 
     function handleCategoryEdit(){
-        setSelectedCategoryIndex(props.index)
+        setSelectedCategoryIndex(props.index,category.Id)
         navigate("/EditCategory",{replace:true})
     }
 
@@ -21,7 +21,7 @@ export default function CategoryCard(props : any) {
         },
         {
             onSuccess :()=>{
-                dispatch(remove({category:category}))
+                dispatch(removeCategory({category:category}))
             },
             onFail : (error)=>{
                 console.log(error)
@@ -30,7 +30,7 @@ export default function CategoryCard(props : any) {
     }
 
     function handleCategoryExploration(){
-        setSelectedCategoryIndex(props.index)
+        setSelectedCategoryIndex(props.index,category.Id)
         navigate("/Category",{replace:true})
     }
 

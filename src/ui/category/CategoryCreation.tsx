@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { createCategory } from '../../../api/CategoryApi'
-import { Category } from '../../../models/catalogue/Types'
-import './CategoryCreation.css'
+import { createCategory } from '../../api/CategoryApi'
+import { Category } from '../../models/catalogue/Types'
+import '../../styles/Category/CategoryCreation.css'
 
 
 export default function CategoryCreator(){

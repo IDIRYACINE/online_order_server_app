@@ -1,11 +1,6 @@
-import { FetchCategoryApi,CreateCategoryApi,UpdateCategoryApi,DeleteCategoryApi, CreateCategoryOptions, FetchOptions, UpdateOptions, DeleteOptions } from "./ApiConfig"
+import { FetchCategoryApi,CreateCategoryApi,UpdateCategoryApi,DeleteCategoryApi, CreateCategoryOptions, FetchOptions, UpdateOptions, DeleteOptions, Callbacks } from "./ApiConfig"
 import axios from "axios"
 import{AuthKey} from '../models/authentication/Authentication'
-
-type Callbacks = {
-    onSuccess(response?:any):void,
-    onFail(error?:any):void,
-}
 
 export async function fetchCategory(options:FetchOptions,callbacks:Callbacks){
     axios.get(FetchCategoryApi,
