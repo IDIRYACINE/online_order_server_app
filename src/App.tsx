@@ -7,6 +7,8 @@ import Login from './ui/authentication/Login';
 import CategoryEdit from './ui/category/CategoryEdit';
 import CategoryCreator from './ui/category/CategoryCreation';
 import Category from './ui/catalogue/Category';
+import ProductCreator from './ui/product/ProductCreator';
+import ProductEditor from './ui/product/ProductEditor';
 
 function App() {
   return (
@@ -20,6 +22,10 @@ function App() {
         <Route path="/Category" element={<Category/>} />
         <Route path="/EditCategory" element={<CategoryEdit/>}/>
         <Route path="/CreateCategory" element={<CategoryCreator/>}/>
+        <Route path="/CreateProduct" element={<ProductCreator/>}/>
+        <Route path="/EditProduct" element={<ProductEditor/>}/>
+
+
 
       </Routes>
       </header>

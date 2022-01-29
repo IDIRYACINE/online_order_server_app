@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { setSelectedProductIndex } from '../../models/state'
+import { deleteProduct } from '../../api/ProductApi'
+import { selectedCategoryId, setSelectedProductIndex } from '../../models/state'
 import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
-import { removeProduct, updateProduct } from '../../redux/reducers/ProductsReducer'
-
-let selectedSizeIndex = 0
+import { removeProduct } from '../../redux/reducers/ProductsReducer'
 
 export default function ProductCard(props:any){
-    const product = useAppSelector(state => state.product.products[props.index])
+    const product = useAppSelector(state => state.product[selectedCategoryId][props.index])
     const dispatch = useAppDispatch()
     const navigate =useNavigate()
 
@@ -16,24 +15,28 @@ export default function ProductCard(props:any){
 
     function handleProductEdit(){
         setSelectedProductIndex(props.index)
-        navigate("/ProductEdit",{replace:true})
+        navigate("/EditProduct",{replace:true})
     }
 
     function handleProductDelete(){
-        dispatch(removeProduct({product:product}))
+        deleteProduct({
+            productId : product.Id,
+            categoryId : selectedCategoryId
+        },{
+            onSuccess : ()=>{dispatch(removeProduct({product:product}))},
+            onFail : ()=>{console.log("fail")}
+        })
     }
 
     return (
         <div className='ProductCard'>
             <label className='ProductNameLabel'>Name </label>
-            <input className='ProductNameField' value={product.Name}></input>
-
-            <label className='ProductPricesLabel'>Price </label>
-            <label className='ProductPrice'>{product.Prices[size]}</label>
+            <label className='ProductPriceLabel'>Price </label>
+            <label className='ProductPrice'>{product.Price[size]}</label>
 
             <label className='ProductSizeLabel'>Size</label>
             <select className='ProductSize'>
-                {product.Prices.map((element,index) =>{
+                {product.Size.map((element,index) =>{
                     return <option value={element} onChange={e=>{setPrice(index)}}></option>
                 })}
             </select>

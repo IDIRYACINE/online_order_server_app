@@ -8,7 +8,6 @@ import '../../styles/Category/CategoryCreation.css'
 export default function CategoryCreator(){
     const navigate = useNavigate()
 
-    const[description , setDescription] = useState("")
     const[name , setName] = useState("idir")
     const[imageUrl , setImageUrl] = useState("https://static.remove.bg/remove-bg-web/a6eefcd21dff1bbc2448264c32f7b48d7380cb17/assets/start_remove-c851bdf8d3127a24e2d137a55b1b427378cd17385b01aec6e59d5d4b5f39d2ec.png")
 

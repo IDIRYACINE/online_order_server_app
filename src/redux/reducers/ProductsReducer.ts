@@ -5,7 +5,7 @@ import { selectedCategoryIndex } from "../../models/state";
 
 type ModifiedAction = {payload:{oldProduct:Product,updatedValues:any}}
 type CreationAction = {payload:{product:Product}}
-type LoadAction = {payload:{categoryKey:string,products:Product[]}}
+type LoadAction = {payload:{categoryKey:string,products:any}}
 type RegisterAction = {payload : {categories:Category[]}}
 type ProductsState = Record<string,Array<Product>>
 
@@ -24,7 +24,7 @@ const productsSlice = createSlice({
         removeProduct(state,action:CreationAction){
             state[selectedCategoryIndex].splice(action.payload.product.Index)
         },
-        createProduct(state,action:CreationAction){
+        addProduct(state,action:CreationAction){
             const products = state[selectedCategoryIndex]
             action.payload.product.Index = products.length
             products.push(action.payload.product)
@@ -32,8 +32,10 @@ const productsSlice = createSlice({
         loadProduct(state,action:LoadAction){
             const categoryKey = action.payload.categoryKey
             let length = state[categoryKey].length
-            action.payload.products.forEach(value=>{
+            action.payload.products.forEach((value:any)=>{
                 value.Index = length
+                value.Price = JSON.parse(value.Price)
+                value.Size = JSON.parse(value.Size)
                 length++
             })
             state[categoryKey] = state[categoryKey].concat(action.payload.products)
@@ -49,6 +51,6 @@ const productsSlice = createSlice({
 })
 
 
-export const {createProduct,updateProduct,removeProduct,loadProduct,registerCategory} = productsSlice.actions
+export const {addProduct,updateProduct,removeProduct,loadProduct,registerCategory} = productsSlice.actions
 
 export default productsSlice.reducer
