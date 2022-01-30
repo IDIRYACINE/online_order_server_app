@@ -9,12 +9,13 @@ import CategoryCreator from './ui/category/CategoryCreation';
 import Category from './ui/catalogue/Category';
 import ProductCreator from './ui/product/ProductCreator';
 import ProductEditor from './ui/product/ProductEditor';
+import NavigationBar from './components/SideNav/SideNavBar';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-
+      <NavigationBar></NavigationBar>
       <Routes>
         <Route path ="/" element ={<Login />}></Route>
         <Route path="/Orders" element={<OrdersList/>} />

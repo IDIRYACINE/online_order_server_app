@@ -4,8 +4,8 @@ import { Attribute } from '../../api/ApiConfig'
 import { updateCategory } from '../../api/CategoryApi'
 import { CategoryAttrIndexes } from '../../models/catalogue/Types'
 import { selectedCategoryIndex } from '../../models/state'
-import {useAppDispatch,useAppSelector} from '../../redux/Hooks'
-import { updateCategory as update } from '../../redux/reducers/CategoryReducer'
+import {useAppDispatch,useAppSelector} from '../../store/Hooks'
+import { updateCategory as update } from '../../store/reducers/CategoryReducer'
 import '../../styles/Category/CategoryEdit.css'
 
 const changedValues : Array<Attribute> = []

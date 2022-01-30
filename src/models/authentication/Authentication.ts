@@ -1,6 +1,6 @@
 import io,{Socket} from "socket.io-client";
-import {add,loadOrders} from "../../redux/reducers/OrdersReducer";
-import {Store} from '../../redux/Store'
+import {add,loadOrders} from "../../store/reducers/OrdersReducer";
+import {Store} from '../../store/Store'
 import {Host} from '../../api/ApiConfig'
 
 let openSocket: Socket

@@ -3,8 +3,8 @@ import { Attribute } from '../../api/ApiConfig'
 import { updateProduct } from '../../api/ProductApi'
 import {  ProductAttrIndexes } from '../../models/catalogue/Types'
 import { selectedCategoryId, selectedProductIndex } from '../../models/state'
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
-import { updateProduct as update } from '../../redux/reducers/ProductsReducer'
+import { useAppDispatch, useAppSelector } from '../../store/Hooks'
+import { updateProduct as update } from '../../store/reducers/ProductsReducer'
 
 function Accesory(props:any){
     return (

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { createProduct } from '../../api/ProductApi'
 import { Product } from '../../models/catalogue/Types'
 import { selectedCategoryId } from '../../models/state'
-import { useAppDispatch } from '../../redux/Hooks'
-import { addProduct } from '../../redux/reducers/ProductsReducer'
+import { useAppDispatch } from '../../store/Hooks'
+import { addProduct } from '../../store/reducers/ProductsReducer'
 
 function Accesory(props:any){
     return (

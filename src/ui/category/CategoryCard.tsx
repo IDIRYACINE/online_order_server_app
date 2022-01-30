@@ -2,8 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { deleteCategory } from '../../api/CategoryApi'
 import { setSelectedCategoryIndex } from '../../models/state'
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
-import { removeCategory, } from '../../redux/reducers/CategoryReducer'
+import { useAppDispatch, useAppSelector } from '../../store/Hooks'
+import { removeCategory, } from '../../store/reducers/CategoryReducer'
 
 export default function CategoryCard(props : any) {
     const category = useAppSelector((state) => state.category.categories[props.index])

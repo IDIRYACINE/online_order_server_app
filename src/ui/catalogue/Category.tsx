@@ -1,10 +1,10 @@
 import React from 'react'
 import {useNavigate } from 'react-router-dom'
 import ProductCard from '../product/ProductCard'
-import {useAppDispatch, useAppSelector } from '../../redux/Hooks'
+import {useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { selectedCategoryId } from '../../models/state'
 import { fetchProduct } from '../../api/ProductApi'
-import { loadProduct } from '../../redux/reducers/ProductsReducer'
+import { loadProduct } from '../../store/reducers/ProductsReducer'
 
 
 

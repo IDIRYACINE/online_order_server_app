@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { deleteProduct } from '../../api/ProductApi'
 import { selectedCategoryId, setSelectedProductIndex } from '../../models/state'
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks'
-import { removeProduct } from '../../redux/reducers/ProductsReducer'
+import { useAppDispatch, useAppSelector } from '../../store/Hooks'
+import { removeProduct } from '../../store/reducers/ProductsReducer'
 
 export default function ProductCard(props:any){
     const product = useAppSelector(state => state.product[selectedCategoryId][props.index])

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '../../redux/Hooks';
+import { useAppSelector } from '../../store/Hooks';
 
 
 export default function OrderCard(props : any){

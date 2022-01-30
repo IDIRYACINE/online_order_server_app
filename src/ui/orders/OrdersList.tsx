@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/Hooks";
+import { useAppDispatch, useAppSelector } from "../../store/Hooks";
 import OrderCard from './OrderCard'
 
-import {add, remove} from '../../redux/reducers/OrdersReducer'
+import {add, remove} from '../../store/reducers/OrdersReducer'
 import { OrderStatus } from "../../models/orders/Order";
 
 let dummyIndex = -1

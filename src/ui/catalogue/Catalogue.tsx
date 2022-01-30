@@ -1,10 +1,10 @@
 import React from 'react'
 import {useNavigate } from 'react-router-dom'
 import CategoryCard from '../category/CategoryCard'
-import {useAppDispatch, useAppSelector } from '../../redux/Hooks'
+import {useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { fetchCategory } from '../../api/CategoryApi'
-import { loadCategory } from '../../redux/reducers/CategoryReducer'
-import { registerCategory } from '../../redux/reducers/ProductsReducer'
+import { loadCategory } from '../../store/reducers/CategoryReducer'
+import { registerCategory } from '../../store/reducers/ProductsReducer'
 
 
 export default function Catalogue(){
