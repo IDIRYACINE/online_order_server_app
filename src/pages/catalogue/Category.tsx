@@ -1,6 +1,6 @@
 import React from 'react'
 import {useNavigate } from 'react-router-dom'
-import ProductCard from '../product/ProductCard'
+import ProductCard from '../../components/product/ProductCard'
 import {useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { selectedCategoryId } from '../../models/state'
 import { fetchProduct } from '../../api/ProductApi'

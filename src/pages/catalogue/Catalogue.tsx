@@ -1,6 +1,6 @@
 import React from 'react'
 import {useNavigate } from 'react-router-dom'
-import CategoryCard from '../category/CategoryCard'
+import CategoryCard from '../../components/category/CategoryCard'
 import {useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { fetchCategory } from '../../api/CategoryApi'
 import { loadCategory } from '../../store/reducers/CategoryReducer'

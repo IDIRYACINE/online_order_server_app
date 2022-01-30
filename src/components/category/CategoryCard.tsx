@@ -1,9 +1,12 @@
 import React from 'react'
+import Button from 'react-bootstrap/esm/Button'
+import Card from 'react-bootstrap/esm/Card'
 import { useNavigate } from 'react-router-dom'
 import { deleteCategory } from '../../api/CategoryApi'
 import { setSelectedCategoryIndex } from '../../models/state'
 import { useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { removeCategory, } from '../../store/reducers/CategoryReducer'
+import './CategoryCard.css'
 
 export default function CategoryCard(props : any) {
     const category = useAppSelector((state) => state.category.categories[props.index])
@@ -35,14 +38,15 @@ export default function CategoryCard(props : any) {
     }
 
     return (
-    <div className='Category'>
-        <img className='CategoryImage' src={category.ImageUrl}></img>
-        <p className='NameLabel'>{category.Name}</p>
-        <p className='ProductsCountLabel'>{category.ProductCount}</p>
-        <button className='EditButton' onClick={()=>{handleCategoryEdit()}}>Edit</button>
-        <button className='DeleteButton' onClick={()=>{handleCategoryDeletion()}}>Delete</button>
-        <button className='ExploreButton' onClick={()=>{handleCategoryExploration()}}>Explore</button>
-    </div>
+        <Card>
+            <Card.Img variant="top" src ={category.ImageUrl}/>
+            <Card.Text>{category.Name}</Card.Text>
+            <Card.Text>{category.ProductCount}</Card.Text>
+            <Button variant="primary" onClick={()=>{handleCategoryDeletion()}}>Delete</Button>
+            <Button variant="primary" onClick={()=>{handleCategoryEdit()}}>Edit</Button>
+            <Button variant="primary" onClick={()=>{handleCategoryExploration()}}>Explore</Button>
+        </Card>
+   
     )
 
 }

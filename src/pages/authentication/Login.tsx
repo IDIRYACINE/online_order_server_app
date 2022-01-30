@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import {loginWithUsernameAndPassword,setOnConnectAction} from '../../models/authentication/Authentication'
 
@@ -20,12 +21,16 @@ export default function Login(){
     }
 
     return (
-        <div className='Login'>
-            <label id='UserLabel'>Username</label>
-            <input id='UserField' onChange={e=>updateLoginInfos('username',e.target.value)}></input>
-            <label id='PasswordLabel'>Password</label>
-            <input id='PasswordField' onChange={e=>updateLoginInfos('password',e.target.value)}></input>
-            <button onClick={() =>{connect()}}>Login</button>
-        </div>
+        <Container>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+        </Form> 
+        </Container>
     )
 }

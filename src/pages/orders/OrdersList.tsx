@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../store/Hooks";
-import OrderCard from './OrderCard'
+import OrderCard from '../../components/order/OrderCard'
 
 import {add, remove} from '../../store/reducers/OrdersReducer'
 import { OrderStatus } from "../../models/orders/Order";
