@@ -10,6 +10,7 @@ import Category from './pages/catalogue/Category';
 import ProductCreator from './pages/product/ProductCreator';
 import ProductEditor from './pages/product/ProductEditor';
 import NavigationBar from './components/navbar/SideNavBar';
+import OrderDetails from './pages/orders/OrderDetails';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/CreateCategory" element={<CategoryCreator/>}/>
         <Route path="/CreateProduct" element={<ProductCreator/>}/>
         <Route path="/EditProduct" element={<ProductEditor/>}/>
+        <Route path="/OrderDetails" element={<OrderDetails/>}/>
 
       </Routes>
       </div>
