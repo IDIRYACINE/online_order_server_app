@@ -7,7 +7,7 @@ export default function OrderCard(props : any){
     const order = useAppSelector(state => state.order.orders[props.index])
 
     return (
-       <Card>
+       <Card className="py-2 px-2">
            <Card.Header>Order#{order.id}</Card.Header>
            <Card.Body>
                <Card.Text>Customer Name : {order.customerName}</Card.Text>

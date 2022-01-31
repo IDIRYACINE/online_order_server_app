@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/App.css';
-import OrdersList from './pages/orders/OrdersList';
+import OrdersBoard from './pages/orders/OrdersBoard';
 import { Route, Routes } from 'react-router-dom';
 import Catalogue from './pages/catalogue/Catalogue';
 import Login from './pages/authentication/Login';
@@ -22,7 +22,7 @@ function App() {
       <div className='App-body'>
       <Routes>
         <Route path ="/Login" element ={<Login />}></Route>
-        <Route path="/Orders" element={<OrdersList/>} />
+        <Route path="/Orders" element={<OrdersBoard/>} />
         <Route path="/Catalogue" element={<Catalogue/>} />
         <Route path="/Category" element={<Category/>} />
         <Route path="/EditCategory" element={<CategoryEdit/>}/>

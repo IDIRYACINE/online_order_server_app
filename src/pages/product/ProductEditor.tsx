@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
+import Container from 'react-bootstrap/esm/Container'
+import {Col, Row} from 'react-bootstrap'
 import { Attribute } from '../../api/ApiConfig'
 import { updateProduct } from '../../api/ProductApi'
 import {  ProductAttrIndexes } from '../../models/catalogue/Types'
 import { selectedCategoryId, selectedProductIndex } from '../../models/state'
 import { useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { updateProduct as update } from '../../store/reducers/ProductsReducer'
+import MainElementForm from '../../components/forms/MainElementForm'
+import SizePriceListForm from '../../components/forms/SizePriceListForm'
 
-function Accesory(props:any){
-    return (
-        <div>
-            <input className='Size' onChange={e=>props.updateSize(props.index,e.target.value)}></input>
-            <input className='Price' onChange={e=>props.updatePrice(props.index,e.target.value)}></input>
-            <button className='RemoveAccessory' onClick={()=>{props.remove(props.index)}}>Remove</button>
-        </div>
-    )
-
-}
 
 export default function ProductEditor(){
     const changedValues : Array<Attribute> = []
@@ -23,13 +17,13 @@ export default function ProductEditor(){
 
     const product = useAppSelector(state=>state.product[selectedCategoryId][selectedProductIndex])
     const [ImageUrl , setImageUrl] = useState(product.ImageUrl)
-    const [AccesoryList , setAccessoryList] = useState([0])
+    const [sizePriceFormList , setSizePriceFormList] = useState([0])
     const dispatch = useAppDispatch()
    
-    function AddSize(){
+    function addSize(){
         product.Price.push("")
         product.Size.push("")
-        setAccessoryList(AccesoryList.concat([1]))
+        setSizePriceFormList(sizePriceFormList.concat([1]))
     }
 
     function updateSize(index:number,value:string){
@@ -55,10 +49,10 @@ export default function ProductEditor(){
         cacheValueChange(ProductAttrIndexes.Description,"Description",value)
     }
 
-    function removeAccessory(id:number){
+    function removeSizePriceForm(id:number){
         product.Price.splice(id)
         product.Size.splice(id)
-        setAccessoryList(AccesoryList.filter((item,index) => index!== id))
+        setSizePriceFormList(sizePriceFormList.filter((item,index) => index!== id))
         cacheValueChange(ProductAttrIndexes.Price,"Price",product.Price)
         cacheValueChange(ProductAttrIndexes.Size,"Size",product.Size)
     }
@@ -82,41 +76,21 @@ export default function ProductEditor(){
     }
 
     return (
-        <div className='ProductCreator'>
-            <img className='ProductImage' src={ImageUrl}></img>
-            <input className='ProductImageField' onChange={(e)=>{updateImageUrl(e.target.value)}} ></input>
+        <Container className="bg-white">
+        <Row>
+        <Col>
+            <MainElementForm updateImageUrl={updateImageUrl} updateName={updateName} updateDescription={updateDescription} save={save}
+                ImageUrl={ImageUrl}
+            />
+        </Col>
+        
+        <Col>
+            <SizePriceListForm sizePriceFormList={sizePriceFormList} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
+                updatePrice={updatePrice} updateSize={updateSize}
+            />
+        </Col>
 
-            <label className='ProductNameLabel'>Name </label>
-            <input className='ProductNameField' onChange={(e)=>updateName(e.target.value)}></input>
-
-            <label className='ProductDescription'></label>
-            <input className='ProductDescriptionField' onChange={(e)=>updateDescription(e.target.value)}></input>
-
-
-            <div className='Accesory'>
-                <div className='AccesoryLabels'>
-                    <label className='SizeLabel'>Size</label>
-                    <label className='PriceLabel'>Price</label>
-                </div>
-                
-                <div className='AccesoryList'>
-                    {
-                        AccesoryList.map((value:any,index:any)=>{
-                            return <Accesory key={index} index={index} remove={removeAccessory} updateSize={updateSize} updatePrice={updatePrice}/>
-                        })
-                    }
-                </div>
-
-                <button className='AddSizeButton' onClick={()=>AddSize()}>Add Size</button>
-
-                <button className='SaveButton' onClick={()=>{save()}}>Save</button>
-
-
-            </div>
-            
-           
-            
-           
-        </div>
+        </Row>
+        </Container>
     )
 }

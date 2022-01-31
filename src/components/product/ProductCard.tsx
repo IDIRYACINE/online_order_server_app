@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Button, Card } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { deleteProduct } from '../../api/ProductApi'
 import { selectedCategoryId, setSelectedProductIndex } from '../../models/state'
@@ -9,9 +10,6 @@ export default function ProductCard(props:any){
     const product = useAppSelector(state => state.product[selectedCategoryId][props.index])
     const dispatch = useAppDispatch()
     const navigate =useNavigate()
-
-    const [price,setPrice] = useState(0)
-    const [size,setSize] = useState(0)
 
     function handleProductEdit(){
         setSelectedProductIndex(props.index)
@@ -29,24 +27,15 @@ export default function ProductCard(props:any){
     }
 
     return (
-        <div className='ProductCard'>
-            <label className='ProductNameLabel'>Name </label>
-            <label className='ProductPriceLabel'>Price </label>
-            <label className='ProductPrice'>{product.Price[size]}</label>
-
-            <label className='ProductSizeLabel'>Size</label>
-            <select className='ProductSize'>
-                {product.Size.map((element,index) =>{
-                    return <option value={element} onChange={e=>{setPrice(index)}}></option>
-                })}
-            </select>
-            
-            <label className='ProductDescription'>{product.Description}</label>
-
-            <img className='ProductImage' src={product.ImageUrl}></img>
-
-            <button className='EditButton' onClick={()=>{handleProductEdit()}}>Edit</button>
-            <button className='DeleteButton' onClick={()=>{handleProductDelete()}}>Delete</button>
-        </div>
+        <Card>
+            <Card.Header>{product.Name}</Card.Header>
+            <Card.Body>
+                <Card.Img src={product.ImageUrl}/>
+                <Card.Text>Default Size : {product.Size[0]}</Card.Text>
+                <Card.Text>Price : {product.Price[0]}</Card.Text>
+                <Button onClick={()=>{handleProductEdit()}}>Edit</Button>
+                <Button onClick={()=>{handleProductDelete()}}>Delete</Button>
+            </Card.Body>
+        </Card>
     )
 }
