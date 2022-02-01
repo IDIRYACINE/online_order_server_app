@@ -13,7 +13,8 @@ export const UpdateProductApi:string = Host+'/UpdateProduct'
 export const DeleteProductApi:string = Host+'/DeleteProduct'
 export const CreateProductApi:string = Host+'/CreateProduct'
 
-export enum FetchModes{Single,Multi}
+export const FetchCustomerApi : string = Host+'/GetCustomer'
+export const FetchCustomerExtrasApi : string = Host+'/GetCustomerExtras'
 
 export type FetchOptions = {
     startIndex : string,

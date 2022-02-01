@@ -1,36 +1,25 @@
 import React from 'react'
 import { Container, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import LoginForm from '../../components/forms/LoginForm'
 import {loginWithUsernameAndPassword,setOnConnectAction} from '../../models/authentication/Authentication'
 
 export default function Login(){
-    let loginInfos : any = {}
+
     let navigate = useNavigate()
 
-    function connect(){
+    function connect(username:string , password :string){
         setOnConnectAction(onConnectCallback)
-        loginWithUsernameAndPassword(loginInfos.username,loginInfos.password)
+        loginWithUsernameAndPassword(username,password)
     }
 
     function onConnectCallback(){
         navigate('/Orders',{replace:true})
     }
 
-    function updateLoginInfos(name:string , value:any){
-        loginInfos[name] = value
-    }
-
     return (
         <Container>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-        </Form> 
+          <LoginForm login={connect}></LoginForm>
         </Container>
     )
 }

@@ -12,7 +12,10 @@ function setUpSocket(){
     })
 
     openSocket.on("newOrder" , (order)=>{
-        Store.dispatch(add(order))
+        console.log(order)
+        if (order !== null){
+            Store.dispatch(add(order))
+        }
     })
 
     openSocket.on("onConnectOrders",(orders)=>{

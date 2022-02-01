@@ -14,14 +14,17 @@ export default function OrdersBoard() {
     function addOrder(){
         dummyIndex++
         let dummyOrder = {
-            id : dummyIndex.toString(),
+            id : "f21",
             state : OrderStatus.Pending,
             items : [],
+            phoneNumber : "052222",
+            email : "idir@gmail",
+            banStatus : "Normal",
             customerName : 'idir',
-            address : 'bba',
             coordinations : {
                 latitude:2,
-                longitude:3
+                longitude:3,
+                addresse : 'bba',
             }
         }
 

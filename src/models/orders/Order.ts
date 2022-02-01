@@ -5,7 +5,8 @@ export enum OrderStatus {
 
 export type Coordinates ={
     latitude : number,
-    longitude : number
+    longitude : number,
+    addresse : string
 }
 
 export type ItemType = {
@@ -16,10 +17,16 @@ export type ItemType = {
 
 export type Order = {
     id : string,
-    state : OrderStatus,
-    items : Array<ItemType>,
     customerName : string,
-    address : string,
+    state : OrderStatus,
+    phoneNumber : string,
+    email : string,
+    banStatus : string,
+    items : Array<ItemType>,
     coordinations : Coordinates
 }
+/*
+{id : f21,state :Pending,items : []}
+
+*/
 

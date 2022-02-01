@@ -30,7 +30,10 @@ function App() {
         <Route path="/CreateCategory" element={<CategoryCreator/>}/>
         <Route path="/CreateProduct" element={<ProductCreator/>}/>
         <Route path="/EditProduct" element={<ProductEditor/>}/>
-        <Route path="/OrderDetails" element={<OrderDetails/>}/>
+
+        <Route path="/OrderDetails">
+          <Route path=":orderId" element={<OrderDetails/>}></Route>
+        </Route>
 
       </Routes>
       </div>
