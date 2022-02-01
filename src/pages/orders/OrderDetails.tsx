@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { getCustomerExtras } from "../../api/OrdersApi";
 import MapComponent from "../../components/map/Map";
 import { Product } from "../../models/catalogue/Types";
 
@@ -44,6 +46,16 @@ function OrderInfo(props:any){
 }
 
 export default function OrderDetails(props:any){
+    let params = useParams();
+
+    getCustomerExtras(
+        params.orderId as string,
+        {
+            onSuccess : (data)=>{},
+            onFail : ()=>{console.log("fail")}
+        }
+    )
+
     const coordinates = {lat:100,lng:200}
     const zoom = {zoom : 8}
     return (
