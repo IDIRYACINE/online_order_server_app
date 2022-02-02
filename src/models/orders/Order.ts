@@ -4,9 +4,8 @@ export enum OrderStatus {
 }
 
 export type Coordinates ={
-    latitude : number,
-    longitude : number,
-    addresse : string
+    lat : number,
+    lng : number
 }
 
 export type ItemType = {
@@ -23,7 +22,9 @@ export type Order = {
     email : string,
     banStatus : string,
     items : Array<ItemType>,
-    coordinations : Coordinates
+    coordinations : Coordinates,
+    address : string
+
 }
 /*
 {id : f21,state :Pending,items : []}

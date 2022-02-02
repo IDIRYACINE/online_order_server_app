@@ -1,14 +1,21 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import { Order } from "../../models/orders/Order";
 
-interface OrdersState{
-    orders : Array<Order>,
+type OrderStatus = Order & {loaded:Boolean}
+
+type RegisterExtrasAction = {
+    payload : {
+        id : string
+        extras : {
+        address : string,
+        rating : string,
+        negativeRating : string}
+    }
 }
 
-const initialState : OrdersState = {
-    orders : [],
-}
+type OrdersState = Record<string,OrderStatus>
+
+const initialState : OrdersState = {}
 
 const ordersSlice = createSlice({
     name : 'orders',
@@ -17,19 +24,23 @@ const ordersSlice = createSlice({
         update(state , action){
             
         },
-        remove(state , action : {payload:number}){
-            state.orders.splice(action.payload,1)
+        remove(state , action : {payload:string}){
+            delete state[action.payload]
             
         },
-        add(state , action : {payload : Order}){
-            state.orders.push(action.payload)
+        add(state , action : {payload : OrderStatus}){
+            state[action.payload.id] = action.payload
+        },
+        registerExtras(state , action:RegisterExtrasAction ){
+            const oldOrder = state[action.payload.id]
+            state[action.payload.id] = {...oldOrder,...action.payload.extras}
         },
         loadOrders(state , action:{payload :any}){
-            state.orders = action.payload
+            state = action.payload
         }
     }
 } )
 
-export const {update,remove,add,loadOrders} = ordersSlice.actions
+export const {update,remove,add,loadOrders,registerExtras} = ordersSlice.actions
 
 export default ordersSlice.reducer

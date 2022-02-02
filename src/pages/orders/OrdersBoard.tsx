@@ -8,7 +8,7 @@ import { OrderStatus } from "../../models/orders/Order";
 let dummyIndex = -1
 
 export default function OrdersBoard() {
-    const orders  = useAppSelector(state => state.order.orders)
+    const orders  = useAppSelector(state => state.order)
     const dispatch = useAppDispatch()
     
     function addOrder(){
@@ -22,16 +22,17 @@ export default function OrdersBoard() {
             banStatus : "Normal",
             customerName : 'idir',
             coordinations : {
-                latitude:2,
-                longitude:3,
-                addresse : 'bba',
-            }
+                lat:2,
+                lng:3,
+            },
+            address : 'bba',
+            loaded:false
         }
 
        dispatch(add(dummyOrder))
     }
 
-    function deleteOrder(key : number){
+    function deleteOrder(key : string){
        dispatch(remove(key))
     }
 
@@ -41,10 +42,10 @@ export default function OrdersBoard() {
 
             <button onClick={() =>{addOrder()}} >Add</button>
 
-            <button onClick={()=>{deleteOrder(0)}}>Remove</button>
+            <button onClick={()=>{deleteOrder("f21")}}>Remove</button>
 
-            {orders.map((element ,key) =>{ 
-                return <OrderCard key={element.id} index={key} ></OrderCard>
+            {Object.entries(orders).map(([key,value])=>{
+                return <OrderCard key={value.id} index={key} ></OrderCard>
             })}
 
         </div>    

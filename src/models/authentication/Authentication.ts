@@ -12,6 +12,7 @@ function setUpSocket(){
     })
 
     openSocket.on("newOrder" , (order)=>{
+        const temp = {order ,...{extras:false}}
         console.log(order)
         if (order !== null){
             Store.dispatch(add(order))

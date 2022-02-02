@@ -2,23 +2,34 @@ import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { getCustomerExtras } from '../../api/OrdersApi';
-import { useAppSelector } from '../../store/Hooks';
+import { useAppDispatch, useAppSelector } from '../../store/Hooks';
+import { registerExtras } from '../../store/reducers/OrdersReducer';
 import './OrderCard.css'
 
 export default function OrderCard(props : any){
-    const order = useAppSelector(state => state.order.orders[props.index])
+    const order = useAppSelector(state => state.order[props.index])
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     function navigateToOrderDetails(){
-        getCustomerExtras(
-            order.id,
-            {
-                onSuccess:()=>{
-                    navigate(`/OrderDetails/${order.id}` , {replace:true})
-                },
-                onFail : ()=>{}
-            }
-        )
+        if(!order.loaded){
+            getCustomerExtras(
+                order.id,
+                {
+                    onSuccess:(response)=>{
+                        dispatch(registerExtras({
+                            id : order.id,
+                            extras : {...response.data , loaded:true}
+                        }))
+                        navigate(`/OrderDetails/${order.id}` , {replace:true})
+                    },
+                    onFail : ()=>{}
+                }
+            )
+        }
+        else{
+            navigate(`/OrderDetails/${order.id}` , {replace:true})
+        }
     }
     
     return (
