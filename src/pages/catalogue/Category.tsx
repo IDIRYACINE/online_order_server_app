@@ -1,15 +1,15 @@
 import React from 'react'
-import {useNavigate } from 'react-router-dom'
+import {useNavigate, useParams } from 'react-router-dom'
 import ProductCard from '../../components/product/ProductCard'
 import {useAppDispatch, useAppSelector } from '../../store/Hooks'
-import { selectedCategoryId } from '../../models/state'
 import { fetchProduct } from '../../api/ProductApi'
 import { loadProduct } from '../../store/reducers/ProductsReducer'
 
 
 
 export default function Category(){
-    const products = useAppSelector(state => state.product[selectedCategoryId])
+    const params = useParams()
+    const products = useAppSelector(state => state.product[params.categoryId!])
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
@@ -21,9 +21,9 @@ export default function Category(){
         fetchProduct({
             startIndex:"0",
             count : "2",
-            categoryId : selectedCategoryId
+            categoryId : params.categoryId!
         },{
-            onSuccess:(response)=>{dispatch(loadProduct({categoryKey:selectedCategoryId,products:response.data}))},
+            onSuccess:(response)=>{dispatch(loadProduct({categoryKey:params.categoryId!,products:response.data}))},
             onFail:(error)=>{console.log(error)}
         })
     }
@@ -34,7 +34,7 @@ export default function Category(){
             <button className='LoadProductsButton' onClick={()=>{loadCategoryProducts()}}>Load Product</button>
 
             {products.map((element,index) =>{ 
-                return <ProductCard key={index} data={element} index={index}></ProductCard>
+                return <ProductCard key={index} data={element} categoryId={params.categoryId!} index={index}></ProductCard>
                 })
             }
 

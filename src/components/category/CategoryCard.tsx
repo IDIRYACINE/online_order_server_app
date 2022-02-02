@@ -10,13 +10,12 @@ import { useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { removeCategory, } from '../../store/reducers/CategoryReducer'
 
 export default function CategoryCard(props : any) {
-    const category = useAppSelector((state) => state.category.categories[props.index])
+    const category = useAppSelector(state => state.category.categories[props.id])    
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
     function handleCategoryEdit(){
-        setSelectedCategoryIndex(props.index,category.Id)
-        navigate("/EditCategory",{replace:true})
+        navigate(`/EditCategory/${props.id}`,{replace:true})
     }
 
     function handleCategoryDeletion(){
@@ -34,8 +33,7 @@ export default function CategoryCard(props : any) {
     }
 
     function handleCategoryExploration(){
-        setSelectedCategoryIndex(props.index,category.Id)
-        navigate("/Category",{replace:true})
+        navigate(`/Category/${props.id}`,{replace:true})
     }
 
     return (

@@ -25,15 +25,16 @@ function App() {
         <Route path ="/Login" element ={<Login />}></Route>
         <Route path="/Orders" element={<OrdersBoard/>} />
         <Route path="/Catalogue" element={<Catalogue/>} />
-        <Route path="/Category" element={<Category/>} />
-        <Route path="/EditCategory" element={<CategoryEdit/>}/>
+        <Route path="/Category/:categoryId" element={<Category/>} />
+
+        <Route path="/EditCategory/:categoryId" element={<CategoryEdit/>}></Route>
+
         <Route path="/CreateCategory" element={<CategoryCreator/>}/>
         <Route path="/CreateProduct" element={<ProductCreator/>}/>
-        <Route path="/EditProduct" element={<ProductEditor/>}/>
 
-        <Route path="/OrderDetails">
-          <Route path=":orderId" element={<OrderDetails/>}></Route>
-        </Route>
+        <Route path="/EditProduct/:categoryId/:productId" element={<ProductEditor/>}></Route>
+
+        <Route path="/OrderDetails/:orderId" element={<OrderDetails/>}></Route>
 
       </Routes>
       </div>

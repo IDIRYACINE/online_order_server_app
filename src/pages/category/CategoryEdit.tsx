@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Attribute } from '../../api/ApiConfig'
 import { updateCategory } from '../../api/CategoryApi'
 import { CategoryAttrIndexes } from '../../models/catalogue/Types'
-import { selectedCategoryIndex } from '../../models/state'
 import {useAppDispatch,useAppSelector} from '../../store/Hooks'
 import { updateCategory as update } from '../../store/reducers/CategoryReducer'
 import '../../styles/Category/CategoryEdit.css'
@@ -12,7 +11,8 @@ const changedValues : Array<Attribute> = []
 const cachedValues :any = {}
 
 export default function CategoryEdit(){
-    const category  = useAppSelector(state => state.category.categories[selectedCategoryIndex])
+    const params = useParams()
+    const category  = useAppSelector(state => state.category.categories[params.categoryId!])
     const navigate = useNavigate()
 
     const[name , setName] = useState(category.Name)

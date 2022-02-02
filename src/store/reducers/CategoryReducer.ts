@@ -3,16 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Category } from "../../models/catalogue/Types";
 
 
-interface CategoriesState{
-    categories : Array<Category>
-}
 
 type ModifyAction = {payload:{category:Category}}
 type UpdateAction = {payload:{oldCategory:Category,updatedValues:any}}
 type LoadAction = {payload:{categories:Category[]}}
 
+type CategoriesState = {
+    categories : Record<string,Category>
+    }
+
 const initialState : CategoriesState = {
-    categories : []
+    categories : {}
 }
 
 const categorySlice = createSlice({
@@ -20,25 +21,23 @@ const categorySlice = createSlice({
     initialState,
     reducers : {
         createCategory(state,action:ModifyAction){
-            action.payload.category.Index = state.categories.length 
-            state.categories.push(action.payload.category)
+            state.categories[action.payload.category.Id] = action.payload.category
         },
         removeCategory(state,action:ModifyAction){
-            state.categories.splice(action.payload.category.Index)
+            delete state.categories[action.payload.category.Id]
         },
         updateCategory(state,action:UpdateAction){
             const newValues = action.payload.updatedValues
-            const index = action.payload.oldCategory.Index
-            state.categories[index] = {...state.categories[index],...newValues}
+            const id = action.payload.oldCategory.Id
+            state.categories[id] = {...state.categories[id],...newValues}
         },
         loadCategory(state,action:LoadAction){
-            let length = state.categories.length
+            const categories : any = {}
             action.payload.categories.forEach(value=>{
-                value.Index = length
-                length++
+                categories[value.Id] = value
             })
-            state.categories = state.categories.concat(action.payload.categories)
 
+            state.categories = {...state.categories , ...categories}
         }
     }
 } )

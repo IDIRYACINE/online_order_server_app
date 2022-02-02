@@ -13,9 +13,13 @@ type RegisterExtrasAction = {
     }
 }
 
-type OrdersState = Record<string,OrderStatus>
+type OrdersState = {
+    orders : Record<string,OrderStatus>
+}
 
-const initialState : OrdersState = {}
+const initialState : OrdersState = {
+    orders : {}
+}
 
 const ordersSlice = createSlice({
     name : 'orders',
@@ -25,18 +29,18 @@ const ordersSlice = createSlice({
             
         },
         remove(state , action : {payload:string}){
-            delete state[action.payload]
+            delete state.orders[action.payload]
             
         },
         add(state , action : {payload : OrderStatus}){
-            state[action.payload.id] = action.payload
+            state.orders[action.payload.id] = action.payload
         },
         registerExtras(state , action:RegisterExtrasAction ){
-            const oldOrder = state[action.payload.id]
-            state[action.payload.id] = {...oldOrder,...action.payload.extras}
+            const oldOrder = state.orders[action.payload.id]
+            state.orders[action.payload.id] = {...oldOrder,...action.payload.extras}
         },
         loadOrders(state , action:{payload :any}){
-            state = action.payload
+            state.orders = action.payload
         }
     }
 } )

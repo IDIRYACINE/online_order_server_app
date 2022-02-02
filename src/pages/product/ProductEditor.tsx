@@ -9,16 +9,19 @@ import { useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { updateProduct as update } from '../../store/reducers/ProductsReducer'
 import MainElementForm from '../../components/forms/MainElementForm'
 import SizePriceListForm from '../../components/forms/SizePriceListForm'
+import { useParams } from 'react-router-dom'
 
 
 export default function ProductEditor(){
-    const changedValues : Array<Attribute> = []
-    const cachedValues :any = {}
+    const dispatch = useAppDispatch()
+    const params = useParams()
+    const product = useAppSelector(state=>state.product[params.categoryId!][parseInt(params.productId!)])
 
-    const product = useAppSelector(state=>state.product[selectedCategoryId][selectedProductIndex])
     const [ImageUrl , setImageUrl] = useState(product.ImageUrl)
     const [sizePriceFormList , setSizePriceFormList] = useState([0])
-    const dispatch = useAppDispatch()
+
+    const changedValues : Array<Attribute> = []
+    const cachedValues :any = {}
    
     function addSize(){
         product.Price.push("")

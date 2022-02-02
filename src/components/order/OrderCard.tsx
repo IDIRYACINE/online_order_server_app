@@ -7,7 +7,7 @@ import { registerExtras } from '../../store/reducers/OrdersReducer';
 import './OrderCard.css'
 
 export default function OrderCard(props : any){
-    const order = useAppSelector(state => state.order[props.index])
+    const order = useAppSelector(state => state.order.orders[props.index])
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 

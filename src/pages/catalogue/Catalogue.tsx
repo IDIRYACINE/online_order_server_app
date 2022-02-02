@@ -16,6 +16,8 @@ export default function Catalogue(){
         navigate("/CreateCategory",{replace:true})
     }
 
+    
+
     function loadCategories(){
         fetchCategory({startIndex:"0",count:"2"},
         {
@@ -31,9 +33,10 @@ export default function Catalogue(){
         <div className='Catalogue'>
             <button className='CreateCategoryButton' onClick={()=>{navigateToCategoryCreation()}}>New Category</button>
             <button className='CreateCategoryButton' onClick={()=>{loadCategories()}}>Load Categories</button>
-            
-            {categories.map((element,index) =>{ 
-                return <CategoryCard key={index} data={element} index={index}></CategoryCard>
+
+            {
+                Object.entries(categories).map(([key,value])=>{
+                    return <CategoryCard key={key} data={value} id={key}></CategoryCard>
                 })
             }
 

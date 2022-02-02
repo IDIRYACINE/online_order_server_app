@@ -1,25 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { deleteProduct } from '../../api/ProductApi'
-import { selectedCategoryId, setSelectedProductIndex } from '../../models/state'
 import { useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { removeProduct } from '../../store/reducers/ProductsReducer'
 
 export default function ProductCard(props:any){
-    const product = useAppSelector(state => state.product[selectedCategoryId][props.index])
+    const product = useAppSelector(state => state.product[props.categoryId][props.index])
     const dispatch = useAppDispatch()
     const navigate =useNavigate()
 
     function handleProductEdit(){
-        setSelectedProductIndex(props.index)
-        navigate("/EditProduct",{replace:true})
+        navigate(`/EditProduct/${props.categoryId}/${props.index}`,{replace:true})
     }
 
     function handleProductDelete(){
         deleteProduct({
             productId : product.Id,
-            categoryId : selectedCategoryId
+            categoryId : props.categoryId
         },{
             onSuccess : ()=>{dispatch(removeProduct({product:product}))},
             onFail : ()=>{console.log("fail")}

@@ -45,7 +45,7 @@ function OrderInfo(props:any){
 
 export default function OrderDetails(){
     let params = useParams();
-    const order = useAppSelector(state=>state.order[params.orderId!])
+    const order = useAppSelector(state=>state.order.orders[params.orderId!])
     const zoom = 8
 
     return (

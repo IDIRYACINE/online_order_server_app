@@ -8,7 +8,7 @@ import { OrderStatus } from "../../models/orders/Order";
 let dummyIndex = -1
 
 export default function OrdersBoard() {
-    const orders  = useAppSelector(state => state.order)
+    const orders  = useAppSelector(state => state.order.orders)
     const dispatch = useAppDispatch()
     
     function addOrder(){
