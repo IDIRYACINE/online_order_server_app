@@ -4,7 +4,6 @@ import {Col, Row} from 'react-bootstrap'
 import { Attribute } from '../../api/ApiConfig'
 import { updateProduct } from '../../api/ProductApi'
 import {  ProductAttrIndexes } from '../../models/catalogue/Types'
-import { selectedCategoryId, selectedProductIndex } from '../../models/state'
 import { useAppDispatch, useAppSelector } from '../../store/Hooks'
 import { updateProduct as update } from '../../store/reducers/ProductsReducer'
 import MainElementForm from '../../components/forms/MainElementForm'
@@ -19,23 +18,25 @@ export default function ProductEditor(){
 
     const [ImageUrl , setImageUrl] = useState(product.ImageUrl)
     const [sizePriceFormList , setSizePriceFormList] = useState([0])
+    const [price , setPrice] = useState(product.Price)
+    const [size ,setSize] = useState(product.Size)
 
     const changedValues : Array<Attribute> = []
     const cachedValues :any = {}
    
     function addSize(){
-        product.Price.push("")
-        product.Size.push("")
+        setPrice(price.concat([""]))
+        setSize(size.concat([""]))
         setSizePriceFormList(sizePriceFormList.concat([1]))
     }
 
     function updateSize(index:number,value:string){
-        product.Price[index] = value
+        price[index] = value
         cacheValueChange(ProductAttrIndexes.Size,"Size",product.Size)
     }
 
     function updatePrice(index:number,value:string){
-        product.Size[index] = value
+        size[index] = value
         cacheValueChange(ProductAttrIndexes.Price,"Price",product.Price)
     }
 
@@ -53,8 +54,8 @@ export default function ProductEditor(){
     }
 
     function removeSizePriceForm(id:number){
-        product.Price.splice(id)
-        product.Size.splice(id)
+        setPrice(price.filter((item,index) => index!==id))
+        setSize(size.filter((item,index) => index!==id))
         setSizePriceFormList(sizePriceFormList.filter((item,index) => index!== id))
         cacheValueChange(ProductAttrIndexes.Price,"Price",product.Price)
         cacheValueChange(ProductAttrIndexes.Size,"Size",product.Size)
@@ -68,7 +69,7 @@ export default function ProductEditor(){
 
     function save(){
         updateProduct({
-            categoryId:selectedCategoryId,
+            categoryId:params.categoryId!,
             productId:product.Id,
             updatedValues : changedValues 
         },{
