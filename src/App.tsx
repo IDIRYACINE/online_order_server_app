@@ -1,16 +1,16 @@
 import React from 'react';
 import './styles/App.css';
-import OrdersBoard from './pages/orders/OrdersBoard';
+import OrdersBoard from './Ui/pages/orders/OrdersBoard';
 import { Route, Routes } from 'react-router-dom';
-import Catalogue from './pages/catalogue/Catalogue';
-import Login from './pages/authentication/Login';
-import CategoryEdit from './pages/category/CategoryEdit';
-import CategoryCreator from './pages/category/CategoryCreation';
-import Category from './pages/catalogue/Category';
-import ProductCreator from './pages/product/ProductCreator';
-import ProductEditor from './pages/product/ProductEditor';
-import NavigationBar from './components/navbar/SideNavBar';
-import OrderDetails from './pages/orders/OrderDetails';
+import Catalogue from './Ui/pages/catalogue/Catalogue';
+import Login from './Ui/pages/authentication/Login';
+import CategoryEdit from './Ui/pages/category/CategoryEdit';
+import CategoryCreator from './Ui/pages/category/CategoryCreation';
+import Category from './Ui/pages/catalogue/Category';
+import ProductCreator from './Ui/pages/product/ProductCreator';
+import ProductEditor from './Ui/pages/product/ProductEditor';
+import NavigationBar from './Ui/components/navbar/SideNavBar';
+import OrderDetails from './Ui/pages/orders/OrderDetails';
 
 function App() {
   return (
