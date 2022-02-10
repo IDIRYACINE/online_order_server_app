@@ -1,4 +1,4 @@
-import { Category, Product } from "../../Application/models/catalogue/Types"
+import { Category, Product } from "../../Domain/catalogue/Types"
 
 
 export const Host = 'http://localhost:3001'

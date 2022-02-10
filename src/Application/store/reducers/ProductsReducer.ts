@@ -1,10 +1,9 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { Category, Product } from "../../models/catalogue/Types";
-import { selectedCategoryIndex } from "../../models/state";
+import { Category, Product } from "../../../Domain/catalogue/Types";
 
-type ModifiedAction = {payload:{oldProduct:Product,updatedValues:any}}
-type CreationAction = {payload:{product:Product}}
+type ModifiedAction = {payload:{oldProduct:Product,categoryKey:string,updatedValues:any}}
+type CreationAction = {payload:{product:Product,categoryKey:string}}
 type LoadAction = {payload:{categoryKey:string,products:any}}
 type RegisterAction = {payload : {categories:Category[]}}
 type ProductsState = Record<string,Array<Product>>
@@ -15,17 +14,17 @@ const productsSlice = createSlice({
     initialState ,
     reducers : {
         updateProduct(state,action:ModifiedAction){
-            const products = state[selectedCategoryIndex]
+            const products = state[action.payload.categoryKey]
             const newValues = action.payload.updatedValues
             const index = action.payload.oldProduct.Index
             let product = products[index]
             products[index] = {...product,...newValues}
         },
         removeProduct(state,action:CreationAction){
-            state[selectedCategoryIndex].splice(action.payload.product.Index)
+            state[action.payload.categoryKey].splice(action.payload.product.Index)
         },
         addProduct(state,action:CreationAction){
-            const products = state[selectedCategoryIndex]
+            const products = state[action.payload.categoryKey]
             action.payload.product.Index = products.length
             products.push(action.payload.product)
         },

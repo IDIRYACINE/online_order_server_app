@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Order } from "../../models/orders/Order";
+import { Order } from "../../../Domain/orders/Order";
 
 type OrderStatus = Order & {loaded:Boolean}
 

@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/esm/Col'
 import Row from 'react-bootstrap/esm/Row'
 import { useNavigate } from 'react-router-dom'
 import { deleteCategory } from '../../../Infrastructure/api/CategoryApi'
-import { setSelectedCategoryIndex } from '../../../Application/models/state'
 import { useAppDispatch, useAppSelector } from '../../../Application/store/Hooks'
 import { removeCategory, } from '../../../Application/store/reducers/CategoryReducer'
 

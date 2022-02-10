@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../Application/store/Hooks
 import OrderCard from '../../components/order/OrderCard'
 
 import {add, remove} from '../../../Application/store/reducers/OrdersReducer'
-import { OrderStatus } from "../../../Application/models/orders/Order";
+import { OrderStatus } from "../../../Domain/orders/Order";
 
 let dummyIndex = -1
 

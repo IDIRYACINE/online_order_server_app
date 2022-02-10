@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import { Form, Button,Image, ButtonGroup, Container, Col, Row } from 'react-bootstrap'
+import { Container, Col, Row } from 'react-bootstrap'
 import { createProduct } from '../../../Infrastructure/api/ProductApi'
 import MainElementForm from '../../components/forms/MainElementForm'
 import SizePriceListForm from '../../components/forms/SizePriceListForm'
-import { Product } from '../../../Application/models/catalogue/Types'
-import { selectedCategoryId } from '../../../Application/models/state'
+import { Product } from '../../../Domain/catalogue/Types'
 import { useAppDispatch } from '../../../Application/store/Hooks'
 import { addProduct } from '../../../Application/store/reducers/ProductsReducer'
+import { useParams } from 'react-router-dom'
 
 
 export default function ProductCreator(){
+    const params = useParams()
     const [ImageUrl , setImageUrl] = useState("")
     const [sizePriceFormList , setSizePriceFormList] = useState([0])
     const dispatch = useAppDispatch()
@@ -62,9 +63,9 @@ export default function ProductCreator(){
     function save(){
         createProduct({
             product : product,
-            categoryId : selectedCategoryId
+            categoryId : params.categoryId!
         },{
-            onSuccess: ()=>{dispatch(addProduct({product:product}))},
+            onSuccess: ()=>{dispatch(addProduct({product:product,categoryKey:params.categoryId!}))},
             onFail : (error) =>{console.log(error)}
         })
     

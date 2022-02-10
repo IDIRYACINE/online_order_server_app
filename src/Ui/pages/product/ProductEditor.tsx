@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/esm/Container'
 import {Col, Row} from 'react-bootstrap'
 import { Attribute } from '../../../Infrastructure/api/ApiConfig'
 import { updateProduct } from '../../../Infrastructure/api/ProductApi'
-import {  ProductAttrIndexes } from '../../../Application/models/catalogue/Types'
+import {  ProductAttrIndexes } from '../../../Domain/catalogue/Types'
 import { useAppDispatch, useAppSelector } from '../../../Application/store/Hooks'
 import { updateProduct as update } from '../../../Application/store/reducers/ProductsReducer'
 import MainElementForm from '../../components/forms/MainElementForm'
@@ -54,8 +54,8 @@ export default function ProductEditor(){
     }
 
     function removeSizePriceForm(id:number){
-        setPrice(price.filter((item,index) => index!==id))
-        setSize(size.filter((item,index) => index!==id))
+        setPrice(price.filter((item: any,index: number) => index!==id))
+        setSize(size.filter((item: any,index: number) => index!==id))
         setSizePriceFormList(sizePriceFormList.filter((item,index) => index!== id))
         cacheValueChange(ProductAttrIndexes.Price,"Price",product.Price)
         cacheValueChange(ProductAttrIndexes.Size,"Size",product.Size)
@@ -73,7 +73,7 @@ export default function ProductEditor(){
             productId:product.Id,
             updatedValues : changedValues 
         },{
-            onSuccess: ()=>{dispatch(update({oldProduct:product,updatedValues:changedValues}))},
+            onSuccess: ()=>{dispatch(update({oldProduct:product,categoryKey:params.categoryId!,updatedValues:changedValues}))},
             onFail : (error) =>{console.log(error)}
         })
     

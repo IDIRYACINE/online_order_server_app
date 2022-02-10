@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/esm/Container'
 import { useNavigate } from 'react-router-dom'
 import { createCategory } from '../../../Infrastructure/api/CategoryApi'
 import MainElementForm from '../../components/forms/MainElementForm'
-import { Category } from '../../../Application/models/catalogue/Types'
+import { Category } from '../../../Domain/catalogue/Types'
 import '../../styles/Category/CategoryCreation.css'
 
 

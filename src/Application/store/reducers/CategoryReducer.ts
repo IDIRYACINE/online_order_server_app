@@ -1,6 +1,6 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { Category } from "../../models/catalogue/Types";
+import { Category } from "../../../Domain/catalogue/Types";
 
 
 

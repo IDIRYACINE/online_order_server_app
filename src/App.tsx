@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/App.css';
+import './Ui/styles/App.css';
 import OrdersBoard from './Ui/pages/orders/OrdersBoard';
 import { Route, Routes } from 'react-router-dom';
 import Catalogue from './Ui/pages/catalogue/Catalogue';

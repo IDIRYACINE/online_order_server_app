@@ -3,7 +3,6 @@ import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getCustomerExtras } from "../../../Infrastructure/api/OrdersApi";
 import MapComponent from "../../components/map/Map";
-import { Product } from "../../../Application/models/catalogue/Types";
 import { useAppSelector } from "../../../Application/store/Hooks";
 
 function OrderItemList(props:any){

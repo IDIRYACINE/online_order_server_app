@@ -19,7 +19,7 @@ export default function ProductCard(props:any){
             productId : product.Id,
             categoryId : props.categoryId
         },{
-            onSuccess : ()=>{dispatch(removeProduct({product:product}))},
+            onSuccess : ()=>{dispatch(removeProduct({product:product,categoryKey:props.categoryId}))},
             onFail : ()=>{console.log("fail")}
         })
     }
