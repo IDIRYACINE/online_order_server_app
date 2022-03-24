@@ -11,6 +11,7 @@ import ProductCreator from './Ui/pages/product/ProductCreator';
 import ProductEditor from './Ui/pages/product/ProductEditor';
 import NavigationBar from './Ui/components/navbar/SideNavBar';
 import OrderDetails from './Ui/pages/orders/OrderDetails';
+import SettingsBoard from './Ui/pages/settings/SettingsBoard';
 
 function App() {
   return (
@@ -33,12 +34,12 @@ function App() {
         <Route path="/CreateProduct" element={<ProductCreator/>}/>
 
         <Route path="/EditProduct/:categoryId/:productId" element={<ProductEditor/>}></Route>
-
+        <Route path="/Settings" element={<SettingsBoard/>}></Route>
         <Route path="/OrderDetails/:orderId" element={<OrderDetails/>}></Route>
 
       </Routes>
       </div>
-
+      
       <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"

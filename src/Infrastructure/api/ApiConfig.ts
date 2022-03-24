@@ -16,6 +16,8 @@ export const CreateProductApi:string = Host+'/CreateProduct'
 export const FetchCustomerApi : string = Host+'/GetCustomer'
 export const FetchCustomerExtrasApi : string = Host+'/GetCustomerExtras'
 
+export const SynchroniseDatabaseApi:string = Host+'/SynchroniseDatabase'
+
 export type FetchOptions = {
     startIndex : string,
     count : string,
