@@ -12,6 +12,7 @@ import ProductEditor from './Ui/pages/product/ProductEditor';
 import NavigationBar from './Ui/components/navbar/SideNavBar';
 import OrderDetails from './Ui/pages/orders/OrderDetails';
 import SettingsBoard from './Ui/pages/settings/SettingsBoard';
+import PrivateRoute from './Ui/components/auth/PrivateRoutes';
 
 function App() {
   return (
@@ -23,19 +24,20 @@ function App() {
 
       <div className='App-body'>
       <Routes>
-        <Route path ="/Login" element ={<Login />}></Route>
-        <Route path="/Orders" element={<OrdersBoard/>} />
-        <Route path="/Catalogue" element={<Catalogue/>} />
-        <Route path="/Category/:categoryId" element={<Category/>} />
+        <Route path ="/Login" element ={<Login />}/>
+        <Route path="/Orders" element={<PrivateRoute><OrdersBoard/></PrivateRoute>} />
+        <Route path="/Catalogue" element={<PrivateRoute><Catalogue/></PrivateRoute>} />
+        <Route path="/Category/:categoryId" element={<PrivateRoute><Category/></PrivateRoute>} />
 
-        <Route path="/EditCategory/:categoryId" element={<CategoryEdit/>}></Route>
+        <Route path="/EditCategory/:categoryId" element={<PrivateRoute><CategoryEdit/></PrivateRoute>}/>
 
-        <Route path="/CreateCategory" element={<CategoryCreator/>}/>
-        <Route path="/CreateProduct" element={<ProductCreator/>}/>
+        <Route path="/CreateCategory" element={<PrivateRoute><CategoryCreator/></PrivateRoute>}/>
+        <Route path="/CreateProduct" element={<PrivateRoute><ProductCreator/></PrivateRoute>}/>
 
-        <Route path="/EditProduct/:categoryId/:productId" element={<ProductEditor/>}></Route>
-        <Route path="/Settings" element={<SettingsBoard/>}></Route>
-        <Route path="/OrderDetails/:orderId" element={<OrderDetails/>}></Route>
+        <Route path="/EditProduct/:categoryId/:productId" element={<PrivateRoute><ProductEditor/></PrivateRoute>}/>
+        <Route path="/Settings" element={<PrivateRoute><SettingsBoard/></PrivateRoute>} />
+        <Route path="/OrderDetails/:orderId" element={<PrivateRoute><OrderDetails/></PrivateRoute>}/>
+        
 
       </Routes>
       </div>

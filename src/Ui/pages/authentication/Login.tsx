@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import LoginForm from '../../components/forms/LoginForm'
+import LoginForm from '../../components/auth/LoginForm'
 import {Authentication} from '../../../Application/authentication/Authentication'
 
 export default function Login(){

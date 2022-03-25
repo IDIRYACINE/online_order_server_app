@@ -7,10 +7,12 @@ import {IAuthentication } from './IAuthentication'
 export let AuthKey:string = 'idir'
 
 let openSocket: Socket
+let isLoggedIn : boolean = false
 let onConnect : ()=>void
 
 function setUpSocket(){
     openSocket.on("connect",()=>{
+        isLoggedIn = true
         onConnect()
     })
 
@@ -49,7 +51,8 @@ function setOnConnectAction(action : ()=>void){
 
 export const Authentication : IAuthentication = {
     loginWithUsernameAndPassword: loginWithUsernameAndPassword,
-    setOnConnectAction: setOnConnectAction
+    setOnConnectAction: setOnConnectAction,
+    isLoggedIn: ()=>isLoggedIn
 }
 
 
