@@ -14,7 +14,7 @@ export default function Category(){
     const dispatch = useAppDispatch()
 
     function navigateToProductCreation(){
-        navigate("/CreateProduct",{replace:true})
+        navigate(`/CreateProduct/${ params.categoryId!}`,{replace:true})
     }
 
     function loadCategoryProducts(){

@@ -10,6 +10,7 @@ export type Coordinates ={
 
 export type ItemType = {
     name : string,
+    size : string,
     price : number,
     quantity : number
 }

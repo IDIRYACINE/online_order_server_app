@@ -32,7 +32,7 @@ function App() {
         <Route path="/EditCategory/:categoryId" element={<PrivateRoute><CategoryEdit/></PrivateRoute>}/>
 
         <Route path="/CreateCategory" element={<PrivateRoute><CategoryCreator/></PrivateRoute>}/>
-        <Route path="/CreateProduct" element={<PrivateRoute><ProductCreator/></PrivateRoute>}/>
+        <Route path="/CreateProduct/:categoryId" element={<PrivateRoute><ProductCreator/></PrivateRoute>}/>
 
         <Route path="/EditProduct/:categoryId/:productId" element={<PrivateRoute><ProductEditor/></PrivateRoute>}/>
         <Route path="/Settings" element={<PrivateRoute><SettingsBoard/></PrivateRoute>} />

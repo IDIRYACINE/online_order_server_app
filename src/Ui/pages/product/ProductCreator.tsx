@@ -6,7 +6,7 @@ import SizePriceListForm from '../../components/forms/SizePriceListForm'
 import { Product } from '../../../Domain/catalogue/Types'
 import { useAppDispatch } from '../../../Application/store/Hooks'
 import { addProduct } from '../../../Application/store/reducers/ProductsReducer'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 export default function ProductCreator(){
@@ -14,6 +14,8 @@ export default function ProductCreator(){
     const [ImageUrl , setImageUrl] = useState("")
     const [sizePriceFormList , setSizePriceFormList] = useState([0])
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
 
     const product:Product = {
         Id : "",
@@ -32,11 +34,11 @@ export default function ProductCreator(){
     }
 
     function updateSize(index:number,value:string){
-        product.Price[index] = value
+        product.Size[index] = value
     }
 
     function updatePrice(index:number,value:string){
-        product.Size[index] = value
+        product.Price[index] = value
     }
 
     function updateName(value:string){
@@ -65,7 +67,10 @@ export default function ProductCreator(){
             product : product,
             categoryId : params.categoryId!
         },{
-            onSuccess: ()=>{dispatch(addProduct({product:product,categoryKey:params.categoryId!}))},
+            onSuccess: ()=>{
+                dispatch(addProduct({product:product,categoryKey:params.categoryId!}))
+                navigate(`/Category/${params.categoryId!}`,{replace:true})
+            },
             onFail : (error) =>{console.log(error)}
         })
     
@@ -82,7 +87,7 @@ export default function ProductCreator(){
         </Col>
         
         <Col>
-            <SizePriceListForm sizePriceFormList={sizePriceFormList} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
+            <SizePriceListForm sizeList={product.Size} priceList={product.Price} sizePriceFormList={sizePriceFormList} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
                 updatePrice={updatePrice} updateSize={updateSize}
             />
         </Col>
