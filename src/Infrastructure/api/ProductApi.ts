@@ -14,10 +14,12 @@ export async function fetchProduct(options :FetchOptions,callbacks:Callbacks){
 }
 
 export async function updateProduct(options:UpdateOptions,callbacks:Callbacks){
-    axios.post(UpdateProductApi,
-        {options:options},
-        {headers:{"X-Auth-key" : AuthKey}
-    })
+    axios.post(UpdateProductApi,{options:JSON.stringify(options)},
+        {
+            headers:{
+                'Content-Type': 'application/json',
+            "X-Auth-key" : AuthKey 
+    }})
     .then(callbacks.onSuccess)
     .catch(callbacks.onFail)
 }

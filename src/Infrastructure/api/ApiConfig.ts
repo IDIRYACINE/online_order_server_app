@@ -34,6 +34,8 @@ export type Attribute = {
     value : any
 }
 
+export type AttributeMap = {}
+
 export type UpdateOptions = {
     categoryId : string,
     productId? : string,

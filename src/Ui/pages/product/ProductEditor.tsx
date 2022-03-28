@@ -1,30 +1,29 @@
 import React, { useState } from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import {Col, Row} from 'react-bootstrap'
-import { Attribute } from '../../../Infrastructure/api/ApiConfig'
 import { updateProduct } from '../../../Infrastructure/api/ProductApi'
-import {  ProductAttrIndexes } from '../../../Domain/catalogue/Types'
 import { useAppDispatch, useAppSelector } from '../../../Application/store/Hooks'
 import { updateProduct as update } from '../../../Application/store/reducers/ProductsReducer'
 import MainElementForm from '../../components/forms/MainElementForm'
 import SizePriceListForm from '../../components/forms/SizePriceListForm'
-import { useParams } from 'react-router-dom'
-import { setTokenSourceMapRange } from 'typescript'
+import { useNavigate, useParams } from 'react-router-dom'
+import { CacheHelper } from '../../../Application/attributesCacher/CacheHelper'
 
 
 export default function ProductEditor(){
+
     const dispatch = useAppDispatch()
     const params = useParams()
     const product = useAppSelector(state=>state.product[params.categoryId!][parseInt(params.productId!)])
-
+    const navigate = useNavigate()
     const [ImageUrl , setImageUrl] = useState(product.ImageUrl)
     const [sizePriceFormList , setSizePriceFormList] = useState([0])
     const [priceList , setPrice] = useState(product.Price)
     const [sizeList ,setSize] = useState(product.Size)
     const [name , setName] = useState(product.Name)
-    const changedValues : Array<Attribute> = []
-    const cachedValues :any = {}
-   
+    
+    CacheHelper.setTargetAttributes('Product')
+    
     function addSize(){
         setPrice(priceList.concat([""]))
         setSize(sizeList.concat([""]))
@@ -34,54 +33,56 @@ export default function ProductEditor(){
     function updateSize(index:number,value:string){
         let temp = [...sizeList]
         temp[index] = value
-        cacheValueChange(ProductAttrIndexes.Size,"Size",product.Size)
         setSize(temp)
-
+        CacheHelper.cacheAttribute("Size",temp)
     }
 
     function updatePrice(index:number,value:string){
         let temp = [...priceList]
         temp[index] = value
-        cacheValueChange(ProductAttrIndexes.Price,"Price",product.Price)
         setPrice(temp)
+        CacheHelper.cacheAttribute("Price",temp)
     }
 
     function updateName(value:string){
         setName(value)
-        cacheValueChange(ProductAttrIndexes.Name,"Name",value)
+        CacheHelper.cacheAttribute("Name",value)
     }
 
     function updateImageUrl(value:string){
         setImageUrl(value) 
-        cacheValueChange(ProductAttrIndexes.ImageUrl,"ImageUrl",value)
+        CacheHelper.cacheAttribute("ImageUrl",value)
     }
 
     function updateDescription(value:string){
-        cacheValueChange(ProductAttrIndexes.Description,"Description",value)
+        CacheHelper.cacheAttribute("Description",value)
     }
 
     function removeSizePriceForm(id:number){
         setPrice(priceList.filter((item: any,index: number) => index!==id))
         setSize(sizeList.filter((item: any,index: number) => index!==id))
         setSizePriceFormList(sizePriceFormList.filter((item,index) => index!== id))
-        cacheValueChange(ProductAttrIndexes.Price,"Price",product.Price)
-        cacheValueChange(ProductAttrIndexes.Size,"Size",product.Size)
+        CacheHelper.cacheAttribute("Price",product.Price)
+        CacheHelper.cacheAttribute("Size",product.Size)
     }
 
-    function cacheValueChange (index:number,name:string ,value:any){
-        changedValues[index] = {name:name,value:value}
-        cachedValues[name] = value
-    }
-
-
+    
     function save(){
         updateProduct({
             categoryId:params.categoryId!,
             productId:product.Id,
-            updatedValues : changedValues 
+            updatedValues : CacheHelper.getCachedValues()
         },{
-            onSuccess: ()=>{dispatch(update({oldProduct:product,categoryKey:params.categoryId!,updatedValues:changedValues}))},
-            onFail : (error) =>{console.log(error)}
+            onSuccess: ()=>{
+                dispatch(update({oldProduct:product,categoryKey:params.categoryId!,updatedValues:CacheHelper.getCachedValues()}))
+                CacheHelper.resetCache()
+                navigate(`/Category/${params.categoryId!}`,{replace:true})
+
+            },
+            onFail : (error) =>{
+                console.log(error)
+                CacheHelper.resetCache()
+            }
         })
     
     }
