@@ -65,7 +65,6 @@ export default function ProductEditor(){
         CacheHelper.cacheAttribute("Price",product.Price)
         CacheHelper.cacheAttribute("Size",product.Size)
     }
-
     
     function save(){
         updateProduct({

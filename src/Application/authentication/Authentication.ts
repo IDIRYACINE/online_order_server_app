@@ -25,8 +25,10 @@ function setUpSocket(){
     })
 
     openSocket.on("onConnectOrders",(orders)=>{
+        console.log(orders)
         Store.dispatch(loadOrders(orders))
     })
+
 
 }
 

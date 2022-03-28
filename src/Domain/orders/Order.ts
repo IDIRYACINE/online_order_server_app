@@ -13,18 +13,32 @@ export type ItemType = {
     size : string,
     price : number,
     quantity : number
-}
+}/*
+{
+    id: 'f21',
+    FullName: 'idiryacine',
+    Email: 'gg',
+    PhoneNumber: '05',
+    BanStatus: 1,
+    Rating: 0,
+    NegativeRating: 0,
+    Latitude: 145,
+    Longitude: 200,
+    Address: 'Sonic',
+    items: [ [Object] ]
+  }*/
 
 export type Order = {
     id : string,
-    customerName : string,
-    state : OrderStatus,
-    phoneNumber : string,
-    email : string,
-    banStatus : string,
+    FullName : string,
+    State : OrderStatus,
+    PhoneNumber : string,
+    Email : string,
+    BanStatus : string,
     items : Array<ItemType>,
-    coordinations : Coordinates,
-    address : string
+    Latitude : number,
+    Longitude : number,
+    Address : string
 
 }
 /*

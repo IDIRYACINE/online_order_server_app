@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getCustomerExtras } from "../../../Infrastructure/api/OrdersApi";
 import MapComponent from "../../components/map/Map";
 import { useAppSelector } from "../../../Application/store/Hooks";
 
@@ -20,9 +19,9 @@ function OrderItem(props:any){
     return (
         <Container>
             <Row className="g-3">
-                <Col className="col-sm-4"><Form.Label>{props.Name}</Form.Label></Col>
-                <Col className="col-sm-3"><Form.Label>X{props.Quantity}</Form.Label></Col>
-                <Col className="col-sm-3"><Form.Label>{props.Price * props.Quantity}</Form.Label></Col>
+                <Col className="col-sm-4"><Form.Label>{props.name}</Form.Label></Col>
+                <Col className="col-sm-3"><Form.Label>X{props.quantity}</Form.Label></Col>
+                <Col className="col-sm-3"><Form.Label>{props.price * props.quantity}</Form.Label></Col>
             </Row>
         </Container>
     )
@@ -33,13 +32,21 @@ function OrderInfo(props:any){
         <Card>
             <Card.Header>{props.id}</Card.Header>
             <Card.Body>
-                <Card.Text>{props.order.customerName}</Card.Text>
-                <Card.Text>{props.order.address}</Card.Text>
+                <Card.Text>{props.order.FullName}</Card.Text>
+                <Card.Text>{props.order.Address}</Card.Text>
                 <OrderItemList items={props.order.items}></OrderItemList>
             </Card.Body>
-            <Card.Footer>Total Price : 300 Da</Card.Footer>
+            <Card.Footer>Total Price : {totalPriceCalc(props.order.items)} Da</Card.Footer>
         </Card>
     )
+}
+
+function totalPriceCalc(items : Array<any>) : number{
+    let priceTotal = 0
+    items.forEach((item) =>{
+        priceTotal += item.price * item.quantity
+    })
+    return priceTotal
 }
 
 export default function OrderDetails(){
@@ -51,7 +58,7 @@ export default function OrderDetails(){
         <Container>
             <Row className="g-3">
                 <Col className="col-sm-5"><OrderInfo order={order}></OrderInfo></Col>
-                <Col className="col-sm-5"><MapComponent center={order.coordinations} zoom={zoom}></MapComponent></Col>
+                <Col className="col-sm-5"><MapComponent center={{lat:order.Latitude ,lng: order.Longitude}} zoom={zoom}></MapComponent></Col>
             </Row>
     
         </Container>

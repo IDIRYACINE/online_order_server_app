@@ -15,17 +15,15 @@ export default function OrdersBoard() {
         dummyIndex++
         let dummyOrder = {
             id : "f21",
-            state : OrderStatus.Pending,
+            State : OrderStatus.Pending,
             items : [],
-            phoneNumber : "052222",
-            email : "idir@gmail",
-            banStatus : "Normal",
-            customerName : 'idir',
-            coordinations : {
-                lat:2,
-                lng:3,
-            },
-            address : 'bba',
+            PhoneNumber : "052222",
+            Email : "idir@gmail",
+            BanStatus : "Normal",
+            FullName : 'idir',
+            Latitude:2,
+            Longitude:3,
+            Address : 'bba',
             loaded:false
         }
 

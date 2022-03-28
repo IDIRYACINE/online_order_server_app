@@ -36,8 +36,8 @@ export default function OrderCard(props : any){
        <Card className="py-2 px-2">
            <Card.Header>Order#{order.id}</Card.Header>
            <Card.Body>
-               <Card.Text>Customer Name : {order.customerName}</Card.Text>
-               <Card.Text>PhoneNumber : {order.phoneNumber}</Card.Text>
+               <Card.Text>Customer Name : {order.FullName}</Card.Text>
+               <Card.Text>PhoneNumber : {order.PhoneNumber}</Card.Text>
                <Button variant="primary" onClick={()=>{navigateToOrderDetails()}}>Full Details</Button>
                <Card.Footer className="text-muted">Sent At : 12:35 </Card.Footer>
            </Card.Body>
