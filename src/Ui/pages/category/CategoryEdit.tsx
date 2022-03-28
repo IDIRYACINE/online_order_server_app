@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Attribute } from '../../../Infrastructure/api/ApiConfig'
 import { updateCategory } from '../../../Infrastructure/api/CategoryApi'
-import { CategoryAttrIndexes } from '../../../Domain/catalogue/Types'
 import {useAppDispatch,useAppSelector} from '../../../Application/store/Hooks'
 import { updateCategory as update } from '../../../Application/store/reducers/CategoryReducer'
 import '../../styles/Category/CategoryEdit.css'
+import { CacheHelper } from '../../../Application/attributesCacher/CacheHelper'
 
-const changedValues : Array<Attribute> = []
-const cachedValues :any = {}
 
 export default function CategoryEdit(){
     const params = useParams()
@@ -23,13 +20,17 @@ export default function CategoryEdit(){
     function saveChanges (){
         updateCategory({
             categoryId : category.Id,
-            updatedValues : changedValues
+            updatedValues : CacheHelper.getCachedValues()
         },{
             onSuccess : ()=>{
-                dispatch(update({oldCategory:category,updatedValues:cachedValues}))
+                dispatch(update({oldCategory:category,updatedValues:CacheHelper.getCachedValues()}))
+                CacheHelper.resetCache()
                 navigate("/Catalogue",{replace:true})
             },
-            onFail:()=>{console.log("failed")}
+            onFail:()=>{
+                CacheHelper.resetCache()
+                console.log("failed")
+        }
         })
     }
 
@@ -38,19 +39,15 @@ export default function CategoryEdit(){
     }
 
     function handleNameChange(value:string){
-        cacheValueChange(CategoryAttrIndexes.Name,"Name",value)
+        CacheHelper.cacheAttribute("Name",value)
         setName(value)
     }
 
     function handleImageChange(value:string){
-        cacheValueChange(CategoryAttrIndexes.ImageUrl,"ImageUrl",value)
+        CacheHelper.cacheAttribute("ImageUrl",value)
         setImageUrl(value)
     }
 
-    function cacheValueChange (index:number,name:string ,value:any){
-        changedValues[index] = {name:name,value:value}
-        cachedValues[name] = value
-    }
 
     return (
         <div className='CategoryEdit'>
