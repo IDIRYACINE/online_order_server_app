@@ -6,10 +6,12 @@ type OrderStatus = Order & {loaded:Boolean}
 type RegisterExtrasAction = {
     payload : {
         id : string
-        extras : {
-        address : string,
-        rating : string,
-        negativeRating : string}
+        Address : string,
+        Rating : string,
+        NegativeRating : string,
+        Latitude : number,
+        Longitude : number 
+    
     }
 }
 
@@ -36,8 +38,9 @@ const ordersSlice = createSlice({
             state.orders[action.payload.id] = action.payload
         },
         registerExtras(state , action:RegisterExtrasAction ){
-            const oldOrder = state.orders[action.payload.id]
-            state.orders[action.payload.id] = {...oldOrder,...action.payload.extras}
+            const id = action.payload.id
+            const oldOrder = state.orders[id]
+            state.orders[id] = {...oldOrder , ...action.payload}
         },
         loadOrders(state , action:{payload :any}){
             state.orders = action.payload

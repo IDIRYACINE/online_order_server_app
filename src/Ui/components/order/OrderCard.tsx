@@ -18,12 +18,13 @@ export default function OrderCard(props : any){
                 {
                     onSuccess:(response)=>{
                         dispatch(registerExtras({
-                            id : order.id,
-                            extras : {...response.data , loaded:true}
+                            ...response.data , loaded:true
                         }))
                         navigate(`/OrderDetails/${order.id}` , {replace:true})
                     },
-                    onFail : ()=>{}
+                    onFail : (e)=>{
+                        console.log(e)
+                    }
                 }
             )
         }

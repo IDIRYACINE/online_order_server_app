@@ -43,7 +43,7 @@ export default function OrdersBoard() {
             <button onClick={()=>{deleteOrder("f21")}}>Remove</button>
 
             {Object.entries(orders).map(([key,value])=>{
-                return <OrderCard key={value.id} index={key} ></OrderCard>
+                return <OrderCard key={'#'+value.id} index={key} ></OrderCard>
             })}
 
         </div>    

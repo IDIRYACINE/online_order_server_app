@@ -5,23 +5,25 @@ import MapComponent from "../../components/map/Map";
 import { useAppSelector } from "../../../Application/store/Hooks";
 
 function OrderItemList(props:any){
-    return (
+    return props.items.length > 0? (
         <Container>
             {props.items.map((value: any,index:any)=>{
                 return <OrderItem key={index} infos={value}></OrderItem>
             })
             }
         </Container>
-    )
+    ) : (<Container></Container>)
 }
 
 function OrderItem(props:any){
+    console.log(props)
     return (
+        
         <Container>
             <Row className="g-3">
-                <Col className="col-sm-4"><Form.Label>{props.name}</Form.Label></Col>
-                <Col className="col-sm-3"><Form.Label>X{props.quantity}</Form.Label></Col>
-                <Col className="col-sm-3"><Form.Label>{props.price * props.quantity}</Form.Label></Col>
+                <Col className="col-sm-4"><Form.Label>{props.infos.name}</Form.Label></Col>
+                <Col className="col-sm-3"><Form.Label>X{props.infos.quantity}</Form.Label></Col>
+                <Col className="col-sm-3"><Form.Label>{props.infos.price * props.infos.quantity}</Form.Label></Col>
             </Row>
         </Container>
     )
@@ -32,7 +34,7 @@ function OrderInfo(props:any){
         <Card>
             <Card.Header>{props.id}</Card.Header>
             <Card.Body>
-                <Card.Text>{props.order.FullName}</Card.Text>
+                <Card.Text>{props.order.FullName +'  -  '+ props.order.PhoneNumber}</Card.Text>
                 <Card.Text>{props.order.Address}</Card.Text>
                 <OrderItemList items={props.order.items}></OrderItemList>
             </Card.Body>
@@ -41,7 +43,7 @@ function OrderInfo(props:any){
     )
 }
 
-function totalPriceCalc(items : Array<any>) : number{
+function totalPriceCalc(items : Array<any>) : number{ 
     let priceTotal = 0
     items.forEach((item) =>{
         priceTotal += item.price * item.quantity
@@ -53,7 +55,6 @@ export default function OrderDetails(){
     let params = useParams();
     const order = useAppSelector(state=>state.order.orders[params.orderId!])
     const zoom = 8
-
     return (
         <Container>
             <Row className="g-3">
@@ -63,4 +64,5 @@ export default function OrderDetails(){
     
         </Container>
     )
+
 }

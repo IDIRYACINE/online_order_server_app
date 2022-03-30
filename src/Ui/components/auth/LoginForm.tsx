@@ -33,7 +33,7 @@ export default function LoginForm(props:any){
             </Row>
         </Form.Group>
         
-        <Button className="py-3" onClick={()=>{props.login(email,password)}}>Save</Button>
+        <Button className="py-3" onClick={()=>{props.login(email,password)}}>Login</Button>
     
         </Form>
     )
