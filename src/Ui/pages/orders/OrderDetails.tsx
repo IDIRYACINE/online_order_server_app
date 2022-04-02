@@ -23,7 +23,7 @@ function OrderItem(props:any){
             <Row className="g-3">
                 <Col className="col-sm-4"><Form.Label>{props.infos.name}</Form.Label></Col>
                 <Col className="col-sm-3"><Form.Label>X{props.infos.quantity}</Form.Label></Col>
-                <Col className="col-sm-3"><Form.Label>{props.infos.price * props.infos.quantity}</Form.Label></Col>
+                <Col className="col-sm-3"><Form.Label>{props.infos.price}</Form.Label></Col>
             </Row>
         </Container>
     )
