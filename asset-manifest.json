@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/online_order_client/static/css/main.c4e70635.chunk.css",
+    "main.js": "/online_order_client/static/js/main.4353ac25.chunk.js",
+    "main.js.map": "/online_order_client/static/js/main.4353ac25.chunk.js.map",
+    "runtime~main.js": "/online_order_client/static/js/runtime~main.62fa228b.js",
+    "runtime~main.js.map": "/online_order_client/static/js/runtime~main.62fa228b.js.map",
+    "static/js/2.1512fc27.chunk.js": "/online_order_client/static/js/2.1512fc27.chunk.js",
+    "static/js/2.1512fc27.chunk.js.map": "/online_order_client/static/js/2.1512fc27.chunk.js.map",
+    "index.html": "/online_order_client/index.html",
+    "precache-manifest.9a03356912e31b72f059129203954191.js": "/online_order_client/precache-manifest.9a03356912e31b72f059129203954191.js",
+    "service-worker.js": "/online_order_client/service-worker.js",
+    "static/css/main.c4e70635.chunk.css.map": "/online_order_client/static/css/main.c4e70635.chunk.css.map"
+  }
+}
