@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/online_order_server_app/static/css/main.c4e70635.chunk.css",
-    "main.js": "/online_order_server_app/static/js/main.4353ac25.chunk.js",
-    "main.js.map": "/online_order_server_app/static/js/main.4353ac25.chunk.js.map",
+    "main.js": "/online_order_server_app/static/js/main.43eaf77f.chunk.js",
+    "main.js.map": "/online_order_server_app/static/js/main.43eaf77f.chunk.js.map",
     "runtime~main.js": "/online_order_server_app/static/js/runtime~main.87b19652.js",
     "runtime~main.js.map": "/online_order_server_app/static/js/runtime~main.87b19652.js.map",
     "static/js/2.1512fc27.chunk.js": "/online_order_server_app/static/js/2.1512fc27.chunk.js",
     "static/js/2.1512fc27.chunk.js.map": "/online_order_server_app/static/js/2.1512fc27.chunk.js.map",
     "index.html": "/online_order_server_app/index.html",
-    "precache-manifest.620ecaf20606cb824ac5061983b6c0b6.js": "/online_order_server_app/precache-manifest.620ecaf20606cb824ac5061983b6c0b6.js",
+    "precache-manifest.97ee4396f7637640d1825a28ced42726.js": "/online_order_server_app/precache-manifest.97ee4396f7637640d1825a28ced42726.js",
     "service-worker.js": "/online_order_server_app/service-worker.js",
     "static/css/main.c4e70635.chunk.css.map": "/online_order_server_app/static/css/main.c4e70635.chunk.css.map"
   }
