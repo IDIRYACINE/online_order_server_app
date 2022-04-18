@@ -1,28 +1,36 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "module": "esnext",
+    "allowJs": true,
+    "checkJs": true,
+    "declaration": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "declarationDir": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "strictPropertyInitialization" : false,
     "jsx": "preserve"
   },
+  "ts-node": {
+    "esm": true
+  },
   "include": [
-    "src",
-    "test/setupTests.ts"
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules"
   ]
 }

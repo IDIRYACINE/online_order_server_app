@@ -1,5 +1,4 @@
 import { Attribute } from "../../Infrastructure/api/ApiConfig"
-import {ICacheHelper} from "./ICacheHelper"
 
 let targetAttribute = 'Category'
 let attributesIndex = 0 
@@ -24,7 +23,7 @@ function cacheAttribute(name:string , value:any , index:number){
 }
 
 
-export const CacheHelper : ICacheHelper = {
+export const CacheHelper  = {
     cacheAttribute: (name: string, value: any) => {
         let attribute = attributesList[targetAttribute][name]
         if(attribute.Set === false){
