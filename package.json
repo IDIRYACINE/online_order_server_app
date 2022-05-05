@@ -2,7 +2,7 @@
   "name": "online_order_server_app",
   "version": "0.1.0",
   "homepage": "https://idiryacine.github.io/online_order_server_app/",
-  "main": "src/index.ts",
+  "main": "pages/index.ts",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
     "@googlemaps/js-api-loader": "^1.13.2",
@@ -10,41 +10,41 @@
     "@reduxjs/toolkit": "^1.7.1",
     "axios": "^0.25.0",
     "cors": "^2.8.5",
+    "next": "^12.1.6",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "^3.0.1",
     "socket.io-client": "^4.4.1",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "@types/google.maps": "^3.47.3",
-    "@types/jest": "^27.4.0",
     "@types/node": "^16.11.19",
-    "@types/react": "^17.0.38",
+    "@types/react": "^17.0.44",
+    "@types/react-bootstrap": "^0.32.29",
     "@types/react-dom": "^17.0.11",
     "@types/react-redux": "^7.1.22",
+    "@types/react-router-dom": "^5.3.3",
+    "eslint": "^ 8.14.0",
+    "eslint-config-next": "12.1.6",
     "gh-pages": "^3.2.3",
+    "next-transpile-modules": "^9.0.0",
     "ts-node": "^10.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "npx tsc -p tsconfig.json --emitDeclarationOnly",
-    "test": "react-scripts test",
+    "dev": "next dev",
+    "build": "next build && npx tsc -p tsconfig.json --emitDeclarationOnly",
+    "start": "next start",
+    "lint": "next lint",
     "postinstall": "tsc",
-    "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
