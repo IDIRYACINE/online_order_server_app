@@ -1,40 +1,53 @@
 import React from "react";
+import { Card, Col } from "react-bootstrap";
+import Button from "react-bootstrap/esm/Button";
+import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/esm/Form";
-import Row from "react-bootstrap/esm/Row"
-import Col from "react-bootstrap/esm/Col"
-import Button from "react-bootstrap/esm/Button"
-
+import Row from "react-bootstrap/esm/Row";
+import '../../styles/LoginForm.css';
 
 export default function LoginForm(props:any){
-    let email = ''
+    let username = ''
     let password = ''
 
-    function updateEmail(value:string){
-        email = value
+    function updateUsername(value:string){
+        username = value
     }
     
     function updatePassword(value:string){
         password = value
     }
 
-    return (
-        <Form className="px-5 py-5" >    
-        <Form.Group>
-            <Row className="g-3">
-                <Col className="col-sm-2"><Form.Label>Email</Form.Label></Col>
-                <Col className="col-sm-8"><Form.Control placeholder="example@something.com" onChange={(e)=>updateEmail(e.target.value)}/></Col>
-            </Row>
-        </Form.Group>
+    return (   
+          <Container >
+            <Row>
+              <Col className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <Card className="border-0 shadow rounded-3 my-5">
+                  <Card.Body className="card-body p-4 p-sm-5">
+                    <Card.Title className="card-title text-center mb-5 fw-light fs-5">Sign In</Card.Title>
+                    <Form>
 
-        <Form.Group>
-            <Row className="g-3">
-                <Col className="col-sm-2"><Form.Label>Password</Form.Label></Col>
-                <Col className="col-sm-8"><Form.Control placeholder="Password" onChange={(e)=>updatePassword(e.target.value)}></Form.Control></Col>
-            </Row>
-        </Form.Group>
+                      <Form.Floating className="mb-3">
+                        <Form.Control type="text" onChange={(e)=>updateUsername(e.target.value)} id="floatingInput" placeholder="Username"/>
+                        <label htmlFor="floatingInput">Username</label>
+
+                      </Form.Floating>
+                      <Form.Floating className="mb-3">
+                        <Form.Control type="password" onChange={(e)=>updatePassword(e.target.value)}  id="floatingPassword" placeholder="Password"/>
+                        <label htmlFor="floatingPassword">Password</label>
+                      </Form.Floating>
         
-        <Button className="py-3" onClick={()=>{props.login(email,password)}}>Login</Button>
-    
-        </Form>
+                      <div className="d-grid">
+                        <Button className="btn btn-primary btn-login text-uppercase fw-bold" onClick={props.login(username,password)}>Signin</Button>
+                      </div>
+                      
+                    </Form>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        
+        
     )
 }
