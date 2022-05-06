@@ -38,7 +38,7 @@ export default function LoginForm(props:any){
                       </Form.Floating>
         
                       <div className="d-grid">
-                        <Button className="btn btn-primary btn-login text-uppercase fw-bold" onClick={props.login(username,password)}>Signin</Button>
+                        <Button className="btn btn-primary btn-login text-uppercase fw-bold" onClick={()=>props.login(username,password)}>Signin</Button>
                       </div>
                       
                     </Form>

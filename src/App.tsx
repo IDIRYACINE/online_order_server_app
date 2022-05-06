@@ -21,7 +21,7 @@ function App() {
       <div className="App-header">
       <NavigationBar></NavigationBar>
       </div>
-
+      
       <div className='App-body'>
       <Routes>
         <Route path ="/Login" element ={<Login />}/>
@@ -48,7 +48,6 @@ function App() {
         crossOrigin="anonymous"
       />
 
-      <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css"/> 
       
     </div>
   );

@@ -1,6 +1,6 @@
 
 export enum OrderStatus {
-    Pending
+    "Pending" = "Pending" , "Cooking" = "Cooking" , "Delivery" = "Delivery"
 }
 
 export type Coordinates ={

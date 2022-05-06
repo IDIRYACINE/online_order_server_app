@@ -1,0 +1,33 @@
+  
+  .order-list-holder{
+      min-height: 75vh;
+      width: 75vw;
+  }
+
+  .order-list > thead{
+      background-color: white;
+  }
+
+  .order-list > tbody > tr > td {
+    padding: 12px 8px;
+
+  }
+
+  .order-list > tbody > .order-row >.order-status-pending  {
+    padding: 12px 8px;
+    color:red
+  }
+  
+
+  .order-list > tbody > .order-row > .order-status-delivery {
+    padding: 12px 8px;
+    color:green
+
+}
+
+
+.order-list > tbody > .order-row > .order-status-cooking {
+  padding: 12px 8px;
+    color:orange
+
+}
