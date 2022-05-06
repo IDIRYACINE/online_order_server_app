@@ -3,16 +3,21 @@ import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import MapComponent from "../../components/map/Map";
 import { useAppSelector } from "../../../Application/store/Hooks";
+import styles from '../../styles/Order/OrderDetaills.module.css'
 
-function OrderItemList(props:any){
-    return props.items.length > 0? (
-        <Container>
+
+function OrderItemsCard(props:any){
+    return (
+        <Card>
+            <Card.Body>
             {props.items.map((value: any,index:any)=>{
-                return <OrderItem key={index} infos={value}></OrderItem>
-            })
+                                return <OrderItem key={index} infos={value}></OrderItem>
+                            })
             }
-        </Container>
-    ) : (<Container></Container>)
+            </Card.Body>
+            <Card.Footer>Total Price : {totalPriceCalc(props.items)} Da</Card.Footer>
+        </Card>
+    )
 }
 
 function OrderItem(props:any){
@@ -31,15 +36,25 @@ function OrderItem(props:any){
 
 function OrderInfo(props:any){
     return (
-        <Card>
-            <Card.Header>{props.id}</Card.Header>
-            <Card.Body>
-                <Card.Text>{props.order.FullName +'  -  '+ props.order.PhoneNumber}</Card.Text>
-                <Card.Text>{props.order.Address}</Card.Text>
-                <OrderItemList items={props.order.items}></OrderItemList>
+        <Card className={styles['customer-card']+" mb-3"}>
+            <Card.Body className={styles['card-body']}>
+                <Row>
+                    <Col className="col-sm-3"><h6 className="mb-0">Full Name</h6></Col>
+                    <Col className="col-sm-9 text-secondary">{props.order.FullName}</Col>
+                </Row>
+                <hr></hr>
+                <Row>
+                    <Col className="col-sm-3"><h6 className="mb-0">Phone</h6></Col>
+                    <Col className="col-sm-9 text-secondary">{props.order.PhoneNumber}</Col>
+                </Row>
+                <hr></hr>
+                <Row>
+                    <Col className="col-sm-3"><h6 className="mb-0">Address</h6></Col>
+                    <Col className="col-sm-9 text-secondary">{props.order.Address}</Col>
+                </Row>
+                <hr></hr>
             </Card.Body>
-            <Card.Footer>Total Price : {totalPriceCalc(props.order.items)} Da</Card.Footer>
-        </Card>
+        </Card>                           
     )
 }
 
@@ -56,12 +71,12 @@ export default function OrderDetails(){
     const order = useAppSelector(state=>state.order.orders[params.orderId!])
     const zoom = 8
     return (
-        <Container>
-            <Row className="g-3">
-                <Col className="col-sm-5"><OrderInfo order={order}></OrderInfo></Col>
-                <Col className="col-sm-5"><MapComponent center={{lat:order.Latitude ,lng: order.Longitude}} zoom={zoom}></MapComponent></Col>
-            </Row>
-    
+        <Container className="align-self-start">
+            <Col className="col-md-5">
+                <Row><OrderInfo order={order}></OrderInfo></Row>
+                <Row><OrderItemsCard items={order.items}></OrderItemsCard></Row>
+            </Col>
+            <Col className={styles['map-col'] + " col-md-6"}><MapComponent center={{lat:order.Latitude ,lng: order.Longitude}} zoom={zoom}></MapComponent></Col>
         </Container>
     )
 

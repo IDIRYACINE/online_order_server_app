@@ -1,30 +1,34 @@
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import React, { ReactElement, useEffect, useRef } from "react";
+import React from "react";
+import { Container } from "react-bootstrap";
+import { MapContainer,TileLayer,Marker,Popup } from "react-leaflet";
+import 'leaflet/dist/leaflet.css'
 
-const render = (status: Status): ReactElement => {
-    return <h3>{status} ..</h3>;
-  };
-  
-const style = {height:'100vh'}
+// Fixing the marker icon not showing up
+import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow
+});
 
-function MyMapComponent({center ,zoom} : {center : google.maps.LatLngLiteral,zoom : number}){
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-      new window.google.maps.Map(ref.current!, {
-        center ,
-        zoom ,
-      });
-    });
-  
-    return <div ref={ref} style={style} id="map" />;
-  }
+L.Marker.prototype.options.icon = DefaultIcon
 
 
 export default function MapComponent(props :any){
     return(
-        <Wrapper apiKey={"AIzaSyBQb9BWP3LVE4eRRmFMC97MsFW1Qze-7j8"} render={render}>
-            <MyMapComponent center={props.center}  zoom={props.zoom}/>
-        </Wrapper>
+       <Container>
+           <MapContainer center={props.center} zoom={props.zoom} scrollWheelZoom={false} style={{ height: "95vh", width: "100%" }}>
+          <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+       <Marker position={props.center}>
+          <Popup>
+           A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+       </MapContainer>,
+       </Container>
     )
 }
