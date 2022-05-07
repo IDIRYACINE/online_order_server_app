@@ -1,0 +1,22 @@
+
+.App {
+  text-align: center;
+  background-color: gainsboro;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.app-body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.nav-holder{
+  position: fixed;
+}
+
+.App-link {
+  color: #61dafb;
+}

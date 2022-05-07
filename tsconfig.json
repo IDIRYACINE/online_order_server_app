@@ -7,6 +7,11 @@
     "declaration": true,
     "outDir": "./build",
     "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "Ui/*" : ["/Ui/*"],
+      "Infrastructure/*" : ["/Infrastructure/*"]
+    },
     "declarationDir": "./src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -29,7 +34,7 @@
     "esm": true
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.ts",
   ],
   "exclude": [
     "./node_modules"

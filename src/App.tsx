@@ -1,5 +1,4 @@
 import React from 'react';
-import './Ui/styles/App.css';
 import OrdersBoard from './Ui/pages/orders/OrdersBoard';
 import { Route, Routes } from 'react-router-dom';
 import Catalogue from './Ui/pages/catalogue/Catalogue';
@@ -13,17 +12,20 @@ import NavigationBar from './Ui/components/navbar/SideNavBar';
 import OrderDetails from './Ui/pages/orders/OrderDetails';
 import SettingsBoard from './Ui/pages/settings/SettingsBoard';
 import PrivateRoute from './Ui/components/auth/PrivateRoutes';
+import { Row,Col, Container} from 'react-bootstrap';
+import './Ui/styles/App.scss';
 
 function App() {
   return (
-    <div className="App">
-
-      <div className="App-header">
-      <NavigationBar></NavigationBar>
-      </div>
+    <Row className="App ">
       
-      <div className='App-body'>
-      <Routes>
+       <Col className="col-sm-1 nav-holder">
+        <NavigationBar></NavigationBar>
+       </Col>
+            
+      <Col className="app-body justify-content-center" >
+        <Container className="container-sm">
+      <Routes >
         <Route path ="/Login" element ={<Login />}/>
         <Route path="/Orders" element={<PrivateRoute><OrdersBoard/></PrivateRoute>} />
         <Route path="/Catalogue" element={<PrivateRoute><Catalogue/></PrivateRoute>} />
@@ -37,19 +39,19 @@ function App() {
         <Route path="/EditProduct/:categoryId/:productId" element={<PrivateRoute><ProductEditor/></PrivateRoute>}/>
         <Route path="/Settings" element={<PrivateRoute><SettingsBoard/></PrivateRoute>} />
         <Route path="/OrderDetails/:orderId" element={<PrivateRoute><OrderDetails/></PrivateRoute>}/>
-        
 
       </Routes>
-      </div>
+      </Container>
       
       <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
         crossOrigin="anonymous"
       />
-
+    </Col>
       
-    </div>
+    </Row>
+  
   );
 }
 

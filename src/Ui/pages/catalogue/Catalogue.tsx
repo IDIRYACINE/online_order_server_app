@@ -1,11 +1,12 @@
 import React from 'react'
 import {useNavigate } from 'react-router-dom'
 import CategoryCard from '../../components/category/CategoryCard'
+import {Row,Button} from 'react-bootstrap'
 import {useAppDispatch, useAppSelector } from '../../../Application/store/Hooks'
 import { fetchCategory } from '../../../Infrastructure/api/CategoryApi'
 import { loadCategory } from '../../../Application/store/reducers/CategoryReducer'
 import { registerCategory } from '../../../Application/store/reducers/ProductsReducer'
-
+import styles from 'Ui/styles/Category/Catalogue.module.scss'
 
 export default function Catalogue(){
     const categories = useAppSelector(state => state.category.categories)
@@ -19,7 +20,7 @@ export default function Catalogue(){
     
 
     function loadCategories(){
-        fetchCategory({startIndex:"0",count:"2"},
+        fetchCategory({startIndex:"0",count:"5"},
         {
             onSuccess:(response)=>{
                 dispatch(loadCategory({categories:response.data}))
@@ -30,15 +31,21 @@ export default function Catalogue(){
     }
 
     return (
-        <div className='Catalogue'>
-            <button className='CreateCategoryButton' onClick={()=>{navigateToCategoryCreation()}}>New Category</button>
-            <button className='CreateCategoryButton' onClick={()=>{loadCategories()}}>Load Categories</button>
+        <div className = "catalogue ">
+            
+            <Row >
+                <Button className=" mb-2" onClick={()=>{navigateToCategoryCreation()}}>New Category</Button>
+                <Button className=" mb-2" onClick={()=>{loadCategories()}}>Load</Button>
+            </Row>
 
+            <Row className="row-cols-3">
             {
                 Object.entries(categories).map(([key,value])=>{
                     return <CategoryCard key={key} data={value} id={key}></CategoryCard>
                 })
             }
+            </Row>
+
 
         </div>
     )

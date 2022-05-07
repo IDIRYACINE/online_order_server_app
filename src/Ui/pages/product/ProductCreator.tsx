@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container, Col, Row ,Image,Card, Button} from 'react-bootstrap'
 import { createProduct } from '../../../Infrastructure/api/ProductApi'
 import MainElementForm from '../../components/forms/MainElementForm'
 import SizePriceListForm from '../../components/forms/SizePriceListForm'
@@ -7,11 +7,12 @@ import { Product } from '../../../Domain/catalogue/Types'
 import { useAppDispatch } from '../../../Application/store/Hooks'
 import { addProduct } from '../../../Application/store/reducers/ProductsReducer'
 import { useNavigate, useParams } from 'react-router-dom'
-
+import { AttributeRow } from '../../components/forms/Forms'
+import styles from '../../../Ui/styles/Product/ProductCreator.module.scss'
 
 export default function ProductCreator(){
     const params = useParams()
-    const [ImageUrl , setImageUrl] = useState("")
+    const [imageUrl , setImageUrl] = useState("")
     const [sizePriceFormList , setSizePriceFormList] = useState([0])
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -20,7 +21,7 @@ export default function ProductCreator(){
     const product:Product = {
         Id : "",
         Name : "",
-        ImageUrl : ImageUrl,
+        ImageUrl : imageUrl,
         Description : "",
         Price : [],
         Size : [],
@@ -75,24 +76,41 @@ export default function ProductCreator(){
         })
     
     }
+/*
+
+*/
+    function cancel(){
+        navigate(`/Category/${params.categoryId!}`,{replace:true})
+    }
 
     return (
-        <Container className="bg-white">
-        <Row>
+        <Container >
+        <Row className="row-cols-2">
+            <Card>
+                <Image className={styles['product-image']} src={imageUrl} />
+                <Card className={styles['product-infos']}>
+                <AttributeRow hint='Category Image' label='Image Url' initialValue='' onChange={updateImageUrl}></AttributeRow>
+                <AttributeRow hint='Category Name' label='Name' initialValue='' onChange={updateName}></AttributeRow>
+                <AttributeRow hint='Category Description' label='Description' initialValue='' onChange={updateDescription}></AttributeRow>
+                </Card>
+            </Card>
 
-        <Col>
-            <MainElementForm updateImageUrl={updateImageUrl} updateName={updateName} updateDescription={updateDescription} save={save}
-                ImageUrl={ImageUrl}
-            />
-        </Col>
-        
-        <Col>
+            <Card>
             <SizePriceListForm sizeList={product.Size} priceList={product.Price} sizePriceFormList={sizePriceFormList} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
-                updatePrice={updatePrice} updateSize={updateSize}
-            />
-        </Col>
+                updatePrice={updatePrice} updateSize={updateSize}/>
+            </Card>
 
         </Row>
-        </Container>
+       
+
+        <Row className= "pt-4 px-2">
+        <Button className="my-1" onClick={()=>{cancel()}}>Cancel</Button>
+        <Button className="my-1" onClick={()=>{save()}}>Save</Button>
+
+        </Row>
+       
+    </Container>
+
+       
     )
 }

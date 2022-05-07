@@ -4,6 +4,7 @@ import ProductCard from '../../components/product/ProductCard'
 import {useAppDispatch, useAppSelector } from '../../../Application/store/Hooks'
 import { fetchProduct } from '../../../Infrastructure/api/ProductApi'
 import { loadProduct } from '../../../Application/store/reducers/ProductsReducer'
+import { Row,Button } from 'react-bootstrap'
 
 
 
@@ -30,13 +31,21 @@ export default function Category(){
 
     return (
         <div className='Category'>
-            <button className='CreateProductButton' onClick={()=>{navigateToProductCreation()}}>New Product</button>
-            <button className='LoadProductsButton' onClick={()=>{loadCategoryProducts()}}>Load Product</button>
+            
+            <Row >
+                <Button className='mb-2' onClick={()=>{navigateToProductCreation()}}>New Product</Button>
+                <Button className='mb-2' onClick={()=>{loadCategoryProducts()}}>Load</Button>
+            </Row>
 
-            {products.map((element,index) =>{ 
+            <Row className="row-cols-3">
+            {
+               products.map((element,index) =>{ 
                 return <ProductCard key={index} data={element} categoryId={params.categoryId!} index={index}></ProductCard>
                 })
             }
+            </Row>
+
+            
 
         </div>
     )

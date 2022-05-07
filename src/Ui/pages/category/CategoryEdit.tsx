@@ -3,9 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { updateCategory } from '../../../Infrastructure/api/CategoryApi'
 import {useAppDispatch,useAppSelector} from '../../../Application/store/Hooks'
 import { updateCategory as update } from '../../../Application/store/reducers/CategoryReducer'
-import '../../styles/Category/CategoryEdit.css'
 import { CacheHelper } from '../../../Application/attributesCacher/CacheHelper'
-
+import {Container,Button,Image,Col,Row,Card} from 'react-bootstrap'
+import { AttributeRow } from '../../components/forms/Forms'
+import styles from '../../styles/Category/CategoryEdit.module.scss'
 
 export default function CategoryEdit(){
     const params = useParams()
@@ -35,7 +36,7 @@ export default function CategoryEdit(){
     }
 
     function cancel (){
-
+        navigate("/Catalogue",{replace:true})
     }
 
     function handleNameChange(value:string){
@@ -50,27 +51,25 @@ export default function CategoryEdit(){
 
 
     return (
-        <div className='CategoryEdit'>
+        <Container >
+            <Row>
+                <Col><Image className={styles['category-image']} src={imageUrl} /></Col>
+                <Col>
+                <Card className={styles['category-infos']}>
+                    <AttributeRow hint='Category Image' label='Image Url' initialValue={imageUrl} onChange={handleImageChange}></AttributeRow>
+                    <AttributeRow hint='Category Name' label='Name' initialValue={name} onChange={handleNameChange}></AttributeRow>
+                    <AttributeRow hint='Category Description' label='Description' initialValue='' onChange={(value)=>{}}></AttributeRow>
+                </Card>
+                </Col>
+               
+            </Row>
 
-            <div className='Image'>
-                <img src={imageUrl} id='CategoryImage'></img>
-                <input id='CategoryImageUrl' value={imageUrl} onChange={e=>{handleImageChange(e.target.value)}}></input>
-            </div>
+            <Row className= "pt-4 px-2">
+            <Button className="my-1" onClick={()=>{cancel()}}>Cancel</Button>
+            <Button className="my-1" onClick={()=>{saveChanges()}}>Save</Button>
 
-            <div className='CategoryInfos'>
-                
-                <p id="CategoryNameLabel">Category Name</p>
-                <input id="CategoryName" value={name} onChange={e=>{handleNameChange(e.target.value)}}></input>
-
-                <p id="CategoryDescriptionLabel">Description</p>
-                <input id="CategoryDescription"></input>
-            </div>
-
-            <div className='Actions'>
-                <button id='SaveButton' onClick={()=>{saveChanges()}}>Save</button>
-
-                <button id='CancelButton' onClick={()=>{cancel()}}>Cancel</button>
-            </div>
-        </div>
+            </Row>
+           
+        </Container>
     )
 }

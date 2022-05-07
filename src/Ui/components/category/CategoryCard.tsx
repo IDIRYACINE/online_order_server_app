@@ -1,12 +1,10 @@
 import React from 'react'
-import Button from 'react-bootstrap/esm/Button'
-import Card from 'react-bootstrap/esm/Card'
-import Col from 'react-bootstrap/esm/Col'
-import Row from 'react-bootstrap/esm/Row'
+import {Card,Col,Image,Row} from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { deleteCategory } from '../../../Infrastructure/api/CategoryApi'
 import { useAppDispatch, useAppSelector } from '../../../Application/store/Hooks'
 import { removeCategory, } from '../../../Application/store/reducers/CategoryReducer'
+import styles from '../../../Ui/styles/Category/CategoryCard.module.scss'
 
 export default function CategoryCard(props : any) {
     const category = useAppSelector(state => state.category.categories[props.id])    
@@ -36,15 +34,19 @@ export default function CategoryCard(props : any) {
     }
 
     return (
-        <Card className="py-5 px-5">
-            <Card.Img variant="top" src ={category.ImageUrl}/>
-            <Card.Text>{category.Name}</Card.Text>
-            <Card.Text>{category.ProductCount}</Card.Text>
-            <Row className="g-3">
-                <Col className="col-sm"><Button variant="primary" onClick={()=>{handleCategoryDeletion()}}>Delete</Button></Col>
-                <Col className="col-sm"><Button variant="primary" onClick={()=>{handleCategoryEdit()}}>Edit</Button></Col>
-                <Col className="col-sm"><Button variant="primary" onClick={()=>{handleCategoryExploration()}}>Explore</Button></Col>
+        <Card className={styles['category-card'] }>
+            <Image className={styles['category-image']} src ={category.ImageUrl}/>
+            <h3 className="fw-bold py-2 ">{category.Name}</h3>
+            <Card.Subtitle>{category.ProductCount}</Card.Subtitle>
+           
+
+            <Card.Body className="px-5">
+            <Row>
+                <Col><button className="btn btn-link" onClick={()=>{handleCategoryDeletion()}}>Delete</button></Col>
+                <Col ><button className="btn btn-link" onClick={()=>{handleCategoryEdit()}}>Edit</button></Col>
+                <Col ><button className="btn btn-link" onClick={()=>{handleCategoryExploration()}}>Explore</button></Col>
             </Row>
+            </Card.Body>
         </Card>
    
     )

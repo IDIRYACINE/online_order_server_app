@@ -1,5 +1,5 @@
 import { Category, Product } from "../../Domain/catalogue/Types";
-export declare const Host = "https://orsnodejs.herokuapp.com/";
+export declare const Host = "localhost:3001/";
 export declare const FetchCategoryApi: string;
 export declare const UpdateCategoryApi: string;
 export declare const CreateCategoryApi: string;

@@ -5,7 +5,7 @@ import OrderCard from '../../components/order/OrderCard'
 import {add, remove} from '../../../Application/store/reducers/OrdersReducer'
 import { OrderStatus } from "../../../Domain/orders/Order";
 import { Container,Row,Col, Table, Card } from "react-bootstrap";
-import '../../styles/Order/OrdersBoard.css'
+import '../../styles/Order/OrdersBoard.module.scss'
 
 let dummyIndex = -1
 

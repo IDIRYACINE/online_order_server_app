@@ -3,7 +3,7 @@ import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import MapComponent from "../../components/map/Map";
 import { useAppSelector } from "../../../Application/store/Hooks";
-import styles from '../../styles/Order/OrderDetaills.module.css'
+import styles from '../../styles/Order/OrderDetaills.module.scss'
 
 
 function OrderItemsCard(props:any){

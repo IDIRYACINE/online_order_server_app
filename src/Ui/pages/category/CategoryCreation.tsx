@@ -1,16 +1,14 @@
 import React, { useState } from 'react'
-import Button from 'react-bootstrap/esm/Button'
-import Container from 'react-bootstrap/esm/Container'
+import {Container,Button,Image,Col,Row,Card} from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { createCategory } from '../../../Infrastructure/api/CategoryApi'
-import MainElementForm from '../../components/forms/MainElementForm'
 import { Category } from '../../../Domain/catalogue/Types'
-import '../../styles/Category/CategoryCreation.css'
-
+import { AttributeRow } from '../../components/forms/Forms'
+import styles from '../../../Ui/styles/Category/CategoryCreation.module.scss'
 
 export default function CategoryCreator(){
     const navigate = useNavigate()
-    const[imageUrl , setImageUrl] = useState("https://static.remove.bg/remove-bg-web/a6eefcd21dff1bbc2448264c32f7b48d7380cb17/assets/start_remove-c851bdf8d3127a24e2d137a55b1b427378cd17385b01aec6e59d5d4b5f39d2ec.png")
+    const[imageUrl , updateImageUrl] = useState("https://static.remove.bg/remove-bg-web/a6eefcd21dff1bbc2448264c32f7b48d7380cb17/assets/start_remove-c851bdf8d3127a24e2d137a55b1b427378cd17385b01aec6e59d5d4b5f39d2ec.png")
 
     let name = 'idir'
     let description = 'none'
@@ -38,7 +36,9 @@ export default function CategoryCreator(){
             },
             {
             onSuccess:()=>{navigate("/Catalogue",{replace:true})},
-            onFail: ()=>{}
+            onFail: (e)=>{
+                console.log(e)
+            }
         })
         
     }
@@ -48,14 +48,25 @@ export default function CategoryCreator(){
     }
 
     return (
-        <Container className='bg-white'>
-            <MainElementForm updateImageUrl={setImageUrl} updateName={updateName} updateDescription={updateDescription} save={handleCategoryCreation}
-                ImageUrl={imageUrl}
-            />
-            <Button id='CancelButton' onClick={()=>{cancel()}}>Cancel</Button>
+        <Container >
+            <Row>
+                <Col><Image className={styles['category-image']} src={imageUrl} /></Col>
+                <Col>
+                <Card className={styles['category-infos']}>
+                    <AttributeRow hint='Category Image' label='Image Url' initialValue='' onChange={updateImageUrl}></AttributeRow>
+                    <AttributeRow hint='Category Name' label='Name' initialValue='' onChange={updateName}></AttributeRow>
+                    <AttributeRow hint='Category Description' label='Description' initialValue='' onChange={updateDescription}></AttributeRow>
+                </Card>
+                </Col>
+               
+            </Row>
 
-       
+            <Row className= "pt-4 px-2">
+            <Button className="my-1" onClick={()=>{cancel()}}>Cancel</Button>
+            <Button className="my-1" onClick={()=>{handleCategoryCreation()}}>Save</Button>
+
+            </Row>
+           
         </Container>
-            
     )
 }

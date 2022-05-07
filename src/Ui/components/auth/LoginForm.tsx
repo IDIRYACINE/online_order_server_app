@@ -4,7 +4,7 @@ import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/esm/Form";
 import Row from "react-bootstrap/esm/Row";
-import '../../styles/LoginForm.css';
+import '../../styles/LoginForm.module.scss';
 
 export default function LoginForm(props:any){
     let username = ''
