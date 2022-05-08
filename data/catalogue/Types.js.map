@@ -1,1 +1,0 @@
-{"version":3,"file":"Types.js","sourceRoot":"","sources":["../../../src/data/catalogue/Types.ts"],"names":[],"mappings":"AAmBA,MAAM,CAAC,MAAM,mBAAmB,GAAG;IAC/B,IAAI,EAAG,CAAC;IACR,QAAQ,EAAE,CAAC;CACd,CAAA;AAED,MAAM,CAAC,MAAM,kBAAkB,GAAG;IAC9B,IAAI,EAAG,CAAC;IACR,QAAQ,EAAG,CAAC;IACZ,WAAW,EAAG,CAAC;IACf,KAAK,EAAG,CAAC;IACT,IAAI,EAAG,CAAC;CACX,CAAA"}
