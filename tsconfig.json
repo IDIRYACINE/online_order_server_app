@@ -2,22 +2,23 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "allowJs": true,
-    "checkJs": true,
-    "declaration": true,
     "outDir": "./build",
-    "rootDir": "./src",
     "baseUrl": "./src",
     "paths": {
-      "Ui/*" : ["/Ui/*"],
-      "Infrastructure/*" : ["/Infrastructure/*"]
+      "styles/*" : ["styles/*"],
+      "utils/*" : ["utils/*"],
+      "controllers/*" : ["controllers/*"],
+      "data/*" : ["data/*"],
     },
-    "declarationDir": "./src",
+    "declarationDir": "types",
     "esModuleInterop": true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
+    "types": ["types/declarations.d.ts"],
+    "emitDeclarationOnly": true,
     "moduleResolution": "Node",
     "lib": [
       "dom",
@@ -27,16 +28,16 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "noEmit": true
+    "jsx": "react",
   },
   "ts-node": {
     "esm": true
   },
   "include": [
-    "./**/*.ts",
+    "src/**/*", "types/declarations.d.ts",  
   ],
   "exclude": [
-    "./node_modules"
+    "node_modules",
+    "build",
   ]
 }

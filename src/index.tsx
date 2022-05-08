@@ -3,10 +3,10 @@ import {createRoot} from'react-dom/client'
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
 import { Provider } from 'react-redux';
-import {Store} from './Application/store/Store'
+import {Store} from './controllers/store/Store'
 
 const root = createRoot(
-  document.getElementById('root')
+  document.getElementById('root')!
 );
 
 root.render(

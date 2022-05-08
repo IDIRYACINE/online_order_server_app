@@ -16,8 +16,8 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.1",
-    "socket.io-client": "^4.4.1",
-    "typescript": "^4.6.4"
+    "socket.io-client": "^4.4.1"
+    
   },
   "devDependencies": {
     "@types/leaflet": "^1.7.9",
@@ -27,11 +27,13 @@
     "@types/react-redux": "^7.1.22",
     "gh-pages": "^3.2.3",
     "sass": "^1.51.0",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.4.0",
+    "typescript": "^4.6.4"
+
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npx tsc -p tsconfig.json --emitDeclarationOnly",
+    "build": "npx tsc -p tsconfig.json",
     "test": "react-scripts test",
     "postinstall": "tsc",
     "eject": "react-scripts eject",
