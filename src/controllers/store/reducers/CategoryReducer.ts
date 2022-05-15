@@ -29,7 +29,7 @@ const categorySlice = createSlice({
         updateCategory(state,action:UpdateAction){
             const newValues = action.payload.updatedValues
             const id = action.payload.oldCategory.Id
-            state.categories[id] = {...state.categories[id],...newValues}
+            state.categories[id] = {...state.categories[id] ,...newValues }
         },
         loadCategory(state,action:LoadAction){
             const categories : any = {}

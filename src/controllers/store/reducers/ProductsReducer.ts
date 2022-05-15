@@ -6,7 +6,7 @@ type ModifiedAction = {payload:{oldProduct:Product,categoryKey:string,updatedVal
 type CreationAction = {payload:{product:Product,categoryKey:string}}
 type LoadAction = {payload:{categoryKey:string,products:any}}
 type RegisterAction = {payload : {categories:Category[]}}
-type ProductsState = Record<string,Array<Product>>
+type ProductsState = Record<string,Record<string,Product>>
 
 const initialState : ProductsState = {}
 const productsSlice = createSlice({
@@ -14,34 +14,47 @@ const productsSlice = createSlice({
     initialState ,
     reducers : {
         updateProduct(state,action:ModifiedAction){
-            const products = state[action.payload.categoryKey]
-            const newValues = action.payload.updatedValues
-            const index = action.payload.oldProduct.Index
-            let product = products[index]
-            products[index] = {...product,...newValues}
+            const categoryKey = action.payload.categoryKey
+            const productKey =action.payload.oldProduct.Id
+         
+            state[categoryKey][productKey] = {...action.payload.oldProduct , ...action.payload.updatedValues}
+       
         },
         removeProduct(state,action:CreationAction){
-            state[action.payload.categoryKey].splice(action.payload.product.Index)
+            delete state[action.payload.categoryKey][action.payload.product.Index]
         },
         addProduct(state,action:CreationAction){
             const products = state[action.payload.categoryKey]
-            action.payload.product.Index = products.length
-            products.push(action.payload.product)
+            products[action.payload.product.Name] = action.payload.product
         },
         loadProduct(state,action:LoadAction){
             const categoryKey = action.payload.categoryKey
-            let length = state[categoryKey].length
+            let formatedProducts :any = {}
+
             action.payload.products.forEach((value:any)=>{
-                value.Index = length
-                value.Price = JSON.parse(value.Price)
-                value.Size = JSON.parse(value.Size)
-                length++
+                const price: any = []
+                const size :any = []
+
+                try{
+                JSON.parse(value.Price,(key,value)=>{
+                    price.push(value)
+                })}
+                catch{}
+
+                try{JSON.parse(value.Size,(key,value)=>{
+                    size.push(value)
+                })}
+                catch{}
+                value.Price = price
+                value.Size  = size
+                formatedProducts[value.Id] = value
+                
             })
-            state[categoryKey] = state[categoryKey].concat(action.payload.products)
+            state[categoryKey] = formatedProducts
         },
         registerCategory(state,action : RegisterAction){
             action.payload.categories.forEach(value=>{
-                state[value.Id] = []
+                state[value.Id] = {}
             })
             
         }

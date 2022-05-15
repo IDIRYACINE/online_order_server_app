@@ -18,19 +18,21 @@ export default function CategoryEdit(){
 
     const dispatch = useAppDispatch()
     
+    CacheHelper.setTargetAttributes("Category")
+
     function saveChanges (){
         updateCategory({
             categoryId : category.Id,
             updatedValues : CacheHelper.getCachedValues()
         },{
             onSuccess : ()=>{
-                dispatch(update({oldCategory:category,updatedValues:CacheHelper.getCachedValues()}))
+                dispatch(update({oldCategory:category,updatedValues:CacheHelper.getCachedValueMap()}))
                 CacheHelper.resetCache()
                 navigate("/Catalogue",{replace:true})
             },
-            onFail:()=>{
+            onFail:(error)=>{
                 CacheHelper.resetCache()
-                console.log("failed")
+                console.log(error)
         }
         })
     }
@@ -50,6 +52,7 @@ export default function CategoryEdit(){
     }
 
 
+
     return (
         <Container >
             <Row>
@@ -58,7 +61,6 @@ export default function CategoryEdit(){
                 <Card className={styles['category-infos']}>
                     <AttributeRow hint='Category Image' label='Image Url' initialValue={imageUrl} onChange={handleImageChange}></AttributeRow>
                     <AttributeRow hint='Category Name' label='Name' initialValue={name} onChange={handleNameChange}></AttributeRow>
-                    <AttributeRow hint='Category Description' label='Description' initialValue='' onChange={(value)=>{}}></AttributeRow>
                 </Card>
                 </Col>
                

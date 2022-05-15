@@ -21,7 +21,7 @@ export default function Category(){
     function loadCategoryProducts(){
         fetchProduct({
             startIndex:"0",
-            count : "2",
+            count : "10",
             categoryId : params.categoryId!
         },{
             onSuccess:(response)=>{dispatch(loadProduct({categoryKey:params.categoryId!,products:response.data}))},
@@ -39,8 +39,8 @@ export default function Category(){
 
             <Row className="row-cols-3">
             {
-               products.map((element,index) =>{ 
-                return <ProductCard key={index} data={element} categoryId={params.categoryId!} index={index}></ProductCard>
+               Object.entries(products).map(([key,value])=>{
+                return <ProductCard key={key} data={value} categoryId={params.categoryId!} index={key}></ProductCard>
                 })
             }
             </Row>

@@ -36,6 +36,14 @@ export const CacheHelper  = {
     getCachedValues: () => {
         return [...cachedAttributes]
     },
+    getCachedValueMap : ()=>{
+        let result :any = {}
+        cachedAttributes.forEach(element => {
+            result[element.name] = element.value
+        })
+        return result
+    }
+    ,
     setTargetAttributes:(type: string)=> {
         targetAttribute = type
     },

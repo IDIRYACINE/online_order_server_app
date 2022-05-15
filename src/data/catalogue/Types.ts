@@ -4,6 +4,7 @@ export type Category = {
     Name : string,
     ImageUrl : string,
     ProductCount : number,
+    Description : string,
     Index : number 
 }
 

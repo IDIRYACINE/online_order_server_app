@@ -26,6 +26,7 @@ export default function CategoryCreator(){
         let category : Category = {
             Id:name,
             Name:name,
+            Description : description,
             ImageUrl:imageUrl,
             Index:-1,
             ProductCount:0

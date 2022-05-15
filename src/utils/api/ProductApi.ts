@@ -14,7 +14,8 @@ export async function fetchProduct(options :FetchOptions,callbacks:Callbacks){
 }
 
 export async function updateProduct(options:UpdateOptions,callbacks:Callbacks){
-    axios.post(UpdateProductApi,{options:JSON.stringify(options)},
+    console.log(options) 
+    axios.post(UpdateProductApi,{options:options},
         {
             headers:{
                 'Content-Type': 'application/json',
@@ -25,6 +26,7 @@ export async function updateProduct(options:UpdateOptions,callbacks:Callbacks){
 }
 
 export async function createProduct(options:CreateProductOptions,callbacks:Callbacks){
+    console.log(options) 
     axios.post(CreateProductApi,
         {options:options},
         {headers:{"X-Auth-key" : AuthKey}

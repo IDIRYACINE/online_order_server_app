@@ -73,7 +73,7 @@ export default function ProductEditor(){
             updatedValues : CacheHelper.getCachedValues()
         },{
             onSuccess: ()=>{
-                dispatch(update({oldProduct:product,categoryKey:params.categoryId!,updatedValues:CacheHelper.getCachedValues()}))
+                dispatch(update({oldProduct:product,categoryKey:params.categoryId!,updatedValues:CacheHelper.getCachedValueMap()}))
                 CacheHelper.resetCache()
                 navigate(`/Category/${params.categoryId!}`,{replace:true})
 
