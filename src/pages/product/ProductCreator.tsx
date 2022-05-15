@@ -52,7 +52,7 @@ export default function ProductCreator(){
     }
 
     function updateDescription(value:string){
-        
+        product.Description = value
     }
 
     function removeSizePriceForm(id:number){

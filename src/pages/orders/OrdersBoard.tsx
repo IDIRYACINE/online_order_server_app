@@ -5,7 +5,6 @@ import OrderCard from 'components/order/OrderCard'
 import {add, remove} from 'controllers/store/reducers/OrdersReducer'
 import { OrderStatus } from "data/orders/Order";
 import { Container, Table, Card } from "react-bootstrap";
-import styles from '../../styles/order/OrdersBoard.module.scss'
 
 let dummyIndex = -1
 
@@ -16,17 +15,23 @@ export default function OrdersBoard() {
     function addOrder(){
         dummyIndex++
         let dummyOrder = {
-            id : "f21"+dummyIndex,
-            State : OrderStatus.Delivery,
-            items : [],
-            PhoneNumber : "052222",
-            Email : "idir@gmail",
-            BanStatus : "Normal",
-            FullName : 'idir',
-            Latitude:2,
-            Longitude:3,
-            Address : 'bba',
-            loaded:false
+            id : dummyIndex.toString(),
+            state : OrderStatus.Waiting,
+            items : [
+                {  name : "test",
+                    size : "small",
+                    price : 32,
+                    quantity : 3
+                }
+            ],
+            phoneNumber : "052222",
+            email : "idir@gmail",
+            banStatus : "Normal",
+            fullName : 'idir',
+            latitude:2,
+            longitude:3,
+            address : 'bba',
+            time : 6.38
         }
 
        dispatch(add(dummyOrder))
@@ -45,7 +50,7 @@ export default function OrdersBoard() {
             <Table className="colored-header datatable order-list">
                 <thead >
                     <tr>
-                        {orderTableHeaders.map(headline=>{return <th>{headline}</th>}) }
+                        {orderTableHeaders.map(headline=>{return <th key={'#'+headline}>{headline}</th>}) }
                     </tr>
                 </thead>
                 <tbody>

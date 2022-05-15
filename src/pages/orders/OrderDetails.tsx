@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Card, Col, Container, Form, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import MapComponent from "components/map/Map";
 import { useAppSelector } from "controllers/store/Hooks";
@@ -10,10 +10,23 @@ function OrderItemsCard(props:any){
     return (
         <Card>
             <Card.Body>
-            {props.items.map((value: any,index:any)=>{
+            <Table className="colored-header datatable order-list">
+                <thead >
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {props.items.map((value: any,index:any)=>{
                                 return <OrderItem key={index} infos={value}></OrderItem>
                             })
-            }
+                }
+                </tbody>
+            </Table>
+           
             </Card.Body>
             <Card.Footer>Total Price : {totalPriceCalc(props.items)} Da</Card.Footer>
         </Card>
@@ -22,15 +35,13 @@ function OrderItemsCard(props:any){
 
 function OrderItem(props:any){
     console.log(props)
-    return (
-        
-        <Container>
-            <Row className="g-3">
-                <Col className="col-sm-4"><Form.Label>{props.infos.name}</Form.Label></Col>
-                <Col className="col-sm-3"><Form.Label>X{props.infos.quantity}</Form.Label></Col>
-                <Col className="col-sm-3"><Form.Label>{props.infos.price}</Form.Label></Col>
-            </Row>
-        </Container>
+    return (  
+            <tr>
+                <td ><Form.Label>{props.infos.name}</Form.Label></td>
+                <td ><Form.Label>{props.infos.size}</Form.Label></td>
+                <td><Form.Label>X{props.infos.quantity}</Form.Label></td>
+                <td ><Form.Label>{props.infos.price}</Form.Label></td>
+            </tr>
     )
 }
 
@@ -40,17 +51,17 @@ function OrderInfo(props:any){
             <Card.Body className={styles['card-body']}>
                 <Row>
                     <Col className="col-sm-3"><h6 className="mb-0">Full Name</h6></Col>
-                    <Col className="col-sm-9 text-secondary">{props.order.FullName}</Col>
+                    <Col className="col-sm-9 text-secondary">{props.order.fullName}</Col>
                 </Row>
                 <hr></hr>
                 <Row>
                     <Col className="col-sm-3"><h6 className="mb-0">Phone</h6></Col>
-                    <Col className="col-sm-9 text-secondary">{props.order.PhoneNumber}</Col>
+                    <Col className="col-sm-9 text-secondary">{props.order.phoneNumber}</Col>
                 </Row>
                 <hr></hr>
                 <Row>
                     <Col className="col-sm-3"><h6 className="mb-0">Address</h6></Col>
-                    <Col className="col-sm-9 text-secondary">{props.order.Address}</Col>
+                    <Col className="col-sm-9 text-secondary">{props.order.address}</Col>
                 </Row>
                 <hr></hr>
             </Card.Body>
@@ -76,7 +87,7 @@ export default function OrderDetails(){
                 <Row><OrderInfo order={order}></OrderInfo></Row>
                 <Row><OrderItemsCard items={order.items}></OrderItemsCard></Row>
             </Col>
-            <Col className={styles['map-col'] + " col-md-6"}><MapComponent center={{lat:order.Latitude ,lng: order.Longitude}} zoom={zoom}></MapComponent></Col>
+            <Col className={styles['map-col'] + " col-md-6"}><MapComponent center={{lat:order.latitude ,lng: order.longitude}} zoom={zoom}></MapComponent></Col>
         </Container>
     )
 

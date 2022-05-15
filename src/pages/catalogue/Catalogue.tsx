@@ -26,7 +26,7 @@ export default function Catalogue(){
                 dispatch(loadCategory({categories:response.data}))
                 dispatch(registerCategory({categories:response.data}))
             },
-            onFail :(error)=>{console.log("failed")}
+            onFail :(error)=>{console.log(error)}
         })
     }
 

@@ -1,6 +1,6 @@
 
-export enum OrderStatus {
-    "Pending" = "Pending" , "Cooking" = "Cooking" , "Delivery" = "Delivery"
+export enum  OrderStatus{
+    "Waiting" = "Waiting" , "Confirmed" = "Confirmed" , "onDelivery" = "onDelivery" 
 }
 
 export type Coordinates ={
@@ -30,17 +30,24 @@ export type ItemType = {
 
 export type Order = {
     id : string,
-    FullName : string,
-    State : OrderStatus,
-    PhoneNumber : string,
-    Email : string,
-    BanStatus : string,
+    fullName : string,
+    state : OrderStatus,
+    phoneNumber : string,
+    email : string,
+    banStatus : string,
     items : Array<ItemType>,
-    Latitude : number,
-    Longitude : number,
-    Address : string
+    latitude : number,
+    longitude : number,
+    address : string,
+    time:number
 
 }
+
+export type OrderState = {
+    id: string,
+    status:OrderStatus
+}
+
 /*
 {id : f21,state :Pending,items : []}
 

@@ -1,22 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Order } from "../../../data/orders/Order";
 
-type OrderStatus = Order & {loaded:Boolean}
 
-type RegisterExtrasAction = {
-    payload : {
-        id : string
-        Address : string,
-        Rating : string,
-        NegativeRating : string,
-        Latitude : number,
-        Longitude : number 
-    
-    }
-}
 
 type OrdersState = {
-    orders : Record<string,OrderStatus>
+    orders : Record<string,Order>
 }
 
 const initialState : OrdersState = {
@@ -34,20 +22,16 @@ const ordersSlice = createSlice({
             delete state.orders[action.payload]
             
         },
-        add(state , action : {payload : OrderStatus}){
+        add(state , action : {payload : Order}){
             state.orders[action.payload.id] = action.payload
         },
-        registerExtras(state , action:RegisterExtrasAction ){
-            const id = action.payload.id
-            const oldOrder = state.orders[id]
-            state.orders[id] = {...oldOrder , ...action.payload}
-        },
+       
         loadOrders(state , action:{payload :any}){
             state.orders = action.payload
         }
     }
 } )
 
-export const {update,remove,add,loadOrders,registerExtras} = ordersSlice.actions
+export const {update,remove,add,loadOrders} = ordersSlice.actions
 
 export default ordersSlice.reducer

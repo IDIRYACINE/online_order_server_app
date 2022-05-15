@@ -13,20 +13,20 @@
 
   }
 
-  .order-list > tbody > .order-row >.order-status-pending  {
+  .order-status-waiting  {
     padding: 12px 8px;
     color:red
   }
   
 
-  .order-list > tbody > .order-row > .order-status-delivery {
+    .order-status-ondelivery {
     padding: 12px 8px;
     color:green
 
-}
+  }
 
 
-.order-list > tbody > .order-row > .order-status-cooking {
+ .order-status-confirmed {
   padding: 12px 8px;
     color:orange
 

@@ -1,7 +1,7 @@
 import { Category, Product } from "../../data/catalogue/Types"
 
 
-export const Host = 'https://orsnodejs.herokuapp.com/'
+export const Host = 'http://localhost:3001/'//'https://orsnodejs.herokuapp.com/'
 
 
 export const FetchCategoryApi:string = Host+'FetchCategory'
@@ -13,6 +13,8 @@ export const FetchProductApi:string = Host+'FetchProduct'
 export const UpdateProductApi:string = Host+'UpdateProduct'
 export const DeleteProductApi:string = Host+'DeleteProduct'
 export const CreateProductApi:string = Host+'CreateProduct'
+
+export const UpdateOrderStatusApi:string = Host+'UpdateOrderStatus'
 
 export const FetchCustomerApi : string = Host+'GetCustomer'
 export const FetchCustomerExtrasApi : string = Host+'GetCustomerExtras'

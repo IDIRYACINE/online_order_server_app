@@ -37,7 +37,7 @@
     "test": "react-scripts test",
     "postinstall": "tsc",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "react-scripts build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
