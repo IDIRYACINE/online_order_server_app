@@ -14,8 +14,13 @@ import SettingsBoard from './pages/settings/SettingsBoard';
 import PrivateRoute from './components/auth/PrivateRoutes';
 import { Row,Col, Container} from 'react-bootstrap';
 import './styles/App.scss';
+import Modal from 'react-modal';
+
+/// Setup for react-modal package
+Modal.setAppElement('#root');
 
 function App() {
+
   return (
     <Row className="App ">
       

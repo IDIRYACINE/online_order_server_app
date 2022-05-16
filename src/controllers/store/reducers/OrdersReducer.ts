@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Order } from "../../../data/orders/Order";
+import { Order, OrderStatus } from "../../../data/orders/Order";
 
 
 
@@ -15,8 +15,9 @@ const ordersSlice = createSlice({
     name : 'orders',
     initialState,
     reducers : {
-        update(state , action){
-            
+        update(state , action : {payload:{orderId:string ,orderState:OrderStatus}}){
+            console.log( action.payload.orderState)
+            state.orders[action.payload.orderId].state = action.payload.orderState
         },
         remove(state , action : {payload:string}){
             delete state.orders[action.payload]
