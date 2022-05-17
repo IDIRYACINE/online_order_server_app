@@ -17,7 +17,6 @@ export default function ProductEditor(){
     const product = useAppSelector(state=>state.product[params.categoryId!][parseInt(params.productId!)])
     const navigate = useNavigate()
     const [imageUrl , setImageUrl] = useState(product.ImageUrl)
-    const [sizePriceFormList , setSizePriceFormList] = useState([0])
     const [priceList , setPrice] = useState(product.Price)
     const [sizeList ,setSize] = useState(product.Size)
     const [name , setName] = useState(product.Name)
@@ -27,7 +26,6 @@ export default function ProductEditor(){
     function addSize(){
         setPrice(priceList.concat([""]))
         setSize(sizeList.concat([""]))
-        setSizePriceFormList(sizePriceFormList.concat([1]))
     }
 
     function updateSize(index:number,value:string){
@@ -61,7 +59,6 @@ export default function ProductEditor(){
     function removeSizePriceForm(id:number){
         setPrice(priceList.filter((item: any,index: number) => index!==id))
         setSize(sizeList.filter((item: any,index: number) => index!==id))
-        setSizePriceFormList(sizePriceFormList.filter((item,index) => index!== id))
         CacheHelper.cacheAttribute("Price",product.Price)
         CacheHelper.cacheAttribute("Size",product.Size)
     }
@@ -103,7 +100,7 @@ export default function ProductEditor(){
             </Card>
 
             <Card>
-            <SizePriceListForm sizeList={product.Size} priceList={product.Price} sizePriceFormList={sizePriceFormList} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
+            <SizePriceListForm sizeList={product.Size} priceList={product.Price} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
                 updatePrice={updatePrice} updateSize={updateSize}/>
             </Card>
 

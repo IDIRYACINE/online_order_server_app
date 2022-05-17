@@ -21,18 +21,15 @@ const ordersSlice = createSlice({
         },
         remove(state , action : {payload:string}){
             delete state.orders[action.payload]
-            
+
         },
         add(state , action : {payload : Order}){
             state.orders[action.payload.id] = action.payload
         },
        
-        loadOrders(state , action:{payload :any}){
-            state.orders = action.payload
-        }
     }
 } )
 
-export const {update,remove,add,loadOrders} = ordersSlice.actions
+export const {update,remove,add} = ordersSlice.actions
 
 export default ordersSlice.reducer

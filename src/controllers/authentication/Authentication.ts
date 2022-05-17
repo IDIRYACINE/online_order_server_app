@@ -1,5 +1,5 @@
 import io,{Socket} from "socket.io-client";
-import {add,loadOrders} from "../store/reducers/OrdersReducer";
+import {add} from "../store/reducers/OrdersReducer";
 import {Store} from '../store/Store'
 import {Host} from '../../utils/api/ApiConfig'
 
@@ -19,10 +19,6 @@ function setUpSocket(){
         if (order !== null){
             Store.dispatch(add(order))
         }
-    })
-
-    openSocket.on("onConnectOrders",(orders)=>{
-        Store.dispatch(loadOrders(orders))
     })
 
 

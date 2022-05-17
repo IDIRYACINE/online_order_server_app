@@ -30,7 +30,7 @@ export type ItemType = {
 
 export type Order = {
     id : string,
-    fullName : string,
+    customerName : string,
     state : OrderStatus,
     phoneNumber : string,
     email : string,

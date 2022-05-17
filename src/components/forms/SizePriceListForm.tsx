@@ -36,7 +36,8 @@ export default function SizePriceListForm(props:any){
     return(
         <Form className="bg-white px-5 py-5 overflow-auto w-80 h-70 max-vh-20">
             {
-                props.sizePriceFormList.map((_:any,index:any)=>{
+                props.priceList.map((_:any,index:any)=>{
+                    
                     return <SizePriceForm key={index} index={index} size={props.sizeList[index]} price={props.priceList[index]} remove={props.removeSizePriceForm} updateSize={props.updateSize} updatePrice={props.updatePrice}/>
                 })
             }

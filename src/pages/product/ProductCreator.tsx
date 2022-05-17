@@ -88,9 +88,9 @@ export default function ProductCreator(){
             <Card>
                 <Image className={styles['product-image']} src={imageUrl} />
                 <Card className={styles['product-infos']}>
-                <AttributeRow hint='Category Image' label='Image Url' initialValue='' onChange={updateImageUrl}></AttributeRow>
-                <AttributeRow hint='Category Name' label='Name' initialValue='' onChange={updateName}></AttributeRow>
-                <AttributeRow hint='Category Description' label='Description' initialValue='' onChange={updateDescription}></AttributeRow>
+                <AttributeRow hint='Product Image' label='Image Url' initialValue='' onChange={updateImageUrl}></AttributeRow>
+                <AttributeRow hint='Product Name' label='Name' initialValue='' onChange={updateName}></AttributeRow>
+                <AttributeRow hint='Product Description' label='Description' initialValue='' onChange={updateDescription}></AttributeRow>
                 </Card>
             </Card>
 

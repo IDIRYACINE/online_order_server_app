@@ -8,6 +8,7 @@ import OrderStatusButton from 'components/order/OrderStatusButton';
 
 
 function OrderItemsCard(props:any){
+    
     return (
         <Card>
             <Card.Body>
@@ -35,7 +36,7 @@ function OrderItemsCard(props:any){
 }
 
 function OrderItem(props:any){
-    console.log(props)
+    
     return (  
             <tr>
                 <td ><Form.Label>{props.infos.name}</Form.Label></td>
@@ -61,7 +62,7 @@ function OrderInfo(props:any){
             <Card.Body className={styles['card-body']}>
                 <Row>
                     <Col className="col-sm-3"><h6 className="mb-0">Full Name</h6></Col>
-                    <Col className="col-sm-9 text-secondary">{props.order.fullName}</Col>
+                    <Col className="col-sm-9 text-secondary">{props.order.customerName}</Col>
                 </Row>
                 <hr></hr>
                 <Row>

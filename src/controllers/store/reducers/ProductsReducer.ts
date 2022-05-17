@@ -30,23 +30,9 @@ const productsSlice = createSlice({
         loadProduct(state,action:LoadAction){
             const categoryKey = action.payload.categoryKey
             let formatedProducts :any = {}
-
             action.payload.products.forEach((value:any)=>{
-                const price: any = []
-                const size :any = []
-
-                try{
-                JSON.parse(value.Price,(key,value)=>{
-                    price.push(value)
-                })}
-                catch{}
-
-                try{JSON.parse(value.Size,(key,value)=>{
-                    size.push(value)
-                })}
-                catch{}
-                value.Price = price
-                value.Size  = size
+                value.Price = JSON.parse(value.Price)
+                value.Size  = JSON.parse(value.Size)
                 formatedProducts[value.Id] = value
                 
             })

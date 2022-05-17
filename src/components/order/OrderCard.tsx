@@ -25,7 +25,7 @@ export default function OrderCard(props : any){
     return (
         <tr className="order-row">
         <td className="order-id">{order.id}</td>
-        <td className="order-customer">{order.fullName}</td>
+        <td className="order-customer">{order.customerName}</td>
         <td className="order-date">{order.time}</td>
 
         <td className=" fw-bold h5">{<OrderStatusButton orderState={order.state} orderId={order.id} 
