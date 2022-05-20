@@ -16,7 +16,6 @@ const ordersSlice = createSlice({
     initialState,
     reducers : {
         update(state , action : {payload:{orderId:string ,orderState:OrderStatus}}){
-            console.log( action.payload.orderState)
             state.orders[action.payload.orderId].state = action.payload.orderState
         },
         remove(state , action : {payload:string}){

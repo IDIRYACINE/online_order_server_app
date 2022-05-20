@@ -5,7 +5,7 @@ import Form from "react-bootstrap/esm/Form";
 import Row from "react-bootstrap/esm/Row";
 
 
-function SizePriceForm(props:any){
+export default function SizePriceForm(props:any){
     const[price,setPrice] = useState(props.price)
     const[size,setSize] = useState(props.size)
 
@@ -30,20 +30,4 @@ function SizePriceForm(props:any){
         </Form.Group>
     )
 
-}
-
-export default function SizePriceListForm(props:any){
-    return(
-        <Form className="bg-white px-5 py-5 overflow-auto w-80 h-70 max-vh-20">
-            {
-                props.priceList.map((_:any,index:any)=>{
-                    
-                    return <SizePriceForm key={index} index={index} size={props.sizeList[index]} price={props.priceList[index]} remove={props.removeSizePriceForm} updateSize={props.updateSize} updatePrice={props.updatePrice}/>
-                })
-            }
-
-            <Button className="my-2" onClick={()=>props.addSize()}>Add Size</Button>
-
-        </Form>
-    )
 }

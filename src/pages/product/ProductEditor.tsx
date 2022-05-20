@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Row,Container,Button,Card,Image} from 'react-bootstrap'
+import { Row,Container,Button,Card,Image,Form} from 'react-bootstrap'
 import { updateProduct } from 'utils/api/ProductApi'
 import { useAppDispatch, useAppSelector } from 'controllers/store/Hooks'
 import { updateProduct as update } from 'controllers/store/reducers/ProductsReducer'
-import SizePriceListForm from 'components/forms/SizePriceListForm'
+import SizePriceForm from 'components/forms/SizePriceListForm'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CacheHelper } from 'controllers/attributesCacher/CacheHelper'
 import { AttributeRow } from 'components/forms/Forms'
@@ -31,14 +31,12 @@ export default function ProductEditor(){
     function updateSize(index:number,value:string){
         let temp = [...sizeList]
         temp[index] = value
-        setSize(temp)
         CacheHelper.cacheAttribute("Size",temp)
     }
 
     function updatePrice(index:number,value:string){
         let temp = [...priceList]
         temp[index] = value
-        setPrice(temp)
         CacheHelper.cacheAttribute("Price",temp)
     }
 
@@ -87,6 +85,7 @@ export default function ProductEditor(){
         navigate(`/Category/${params.categoryId!}`,{replace:true})
     }
 
+
     return (
         <Container >
         <Row className="row-cols-2">
@@ -100,9 +99,20 @@ export default function ProductEditor(){
             </Card>
 
             <Card>
-            <SizePriceListForm sizeList={product.Size} priceList={product.Price} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
-                updatePrice={updatePrice} updateSize={updateSize}/>
-            </Card>
+            <Form className="bg-white px-5 py-5 overflow-auto w-80 h-70 max-vh-20">
+            {
+                priceList.map((_:any,index:any)=>{
+                    
+                    return <SizePriceForm key={index} index={index} size={sizeList[index]}
+                    price={priceList[index]} remove={removeSizePriceForm}
+                    updateSize={updateSize} updatePrice={updatePrice}/>
+                })
+            }
+
+            <Button className="my-2" onClick={()=>addSize()}>Add Size</Button>
+
+            </Form>
+        </Card>
 
         </Row>
        

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Container, Row ,Image,Card, Button} from 'react-bootstrap'
+import { Container, Row ,Image,Card, Button,Form} from 'react-bootstrap'
 import { createProduct } from 'utils/api/ProductApi'
-import SizePriceListForm from 'components/forms/SizePriceListForm'
+import SizePriceForm from 'components/forms/SizePriceListForm'
 import { Product } from 'data/catalogue/Types'
 import { useAppDispatch } from 'controllers/store/Hooks'
 import { addProduct } from 'controllers/store/reducers/ProductsReducer'
@@ -95,8 +95,19 @@ export default function ProductCreator(){
             </Card>
 
             <Card>
-            <SizePriceListForm sizeList={product.Size} priceList={product.Price} sizePriceFormList={sizePriceFormList} removeSizePriceForm={removeSizePriceForm} addSize={addSize}
-                updatePrice={updatePrice} updateSize={updateSize}/>
+            <Form className="bg-white px-5 py-5 overflow-auto w-80 h-70 max-vh-20">
+            {
+                sizePriceFormList.map((_:any,index:any)=>{
+                    
+                    return <SizePriceForm key={index} index={index} size={product.Size[index]}
+                    price={product.Price[index]} remove={removeSizePriceForm}
+                    updateSize={updateSize} updatePrice={updatePrice}/>
+                })
+            }
+
+            <Button className="my-2" onClick={()=>addSize()}>Add Size</Button>
+
+            </Form>
             </Card>
 
         </Row>
